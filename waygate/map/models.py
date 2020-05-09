@@ -23,7 +23,16 @@ class Character(models.Model):
     display_name = models.CharField(max_length=200)
     fullname = models.CharField(max_length=200)
     color = models.CharField(max_length=7) 
-    pass
 
     def __str__(self):
         return self.display_name
+
+
+class Point(models.Model):
+    chapter_number = models.ForeignKey('Chapter', on_delete=models.CASCADE)
+    start_x = models.FloatField()
+    start_y = models.FloatField()
+    end_x = models.FloatField()
+    end_y = models.FloatField()
+    type = models.CharField(max_length=100)
+
