@@ -19,20 +19,28 @@ class Book(models.Model):
     def __str__(self):
         return self.book_name
 
+
+class PointOfView(models.Model):
+    chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE)
+    character = models.ForeignKey('Character', on_delete=models.CASCADE)
+
+
 class Character(models.Model):
     display_name = models.CharField(max_length=200)
     fullname = models.CharField(max_length=200)
-    color = models.CharField(max_length=7) 
+    # TODO: Make this categorized
+    color = models.CharField(max_length=7)
 
     def __str__(self):
         return self.display_name
 
 
-class Point(models.Model):
+class MapPin(models.Model):
     chapter_number = models.ForeignKey('Chapter', on_delete=models.CASCADE)
+    point_of_view = models.ForeignKey('PointOfView', on_delete=models.CASCADE)
     start_x = models.FloatField()
     start_y = models.FloatField()
     end_x = models.FloatField()
     end_y = models.FloatField()
+    # TODO: Make this categorized
     type = models.CharField(max_length=100)
-
