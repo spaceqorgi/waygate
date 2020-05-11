@@ -1,4 +1,6 @@
-from map.models import Book, Choice
+# Run this script in manage.py shell
+
+from map.models import Book, Chapter
 import pandas as pd
 
 data = pd.read_csv('data/chapters.csv', sep='|')
