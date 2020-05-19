@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 python-language-server = {extras = ["all"],version = "*"}
+gunicorn = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
