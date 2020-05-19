@@ -30,14 +30,14 @@ class Character(models.Model):
         return self.display_name
 
 
-class PointOfView(models.Model):
+class PoV(models.Model):
     chapter = models.ForeignKey("Chapter", on_delete=models.CASCADE)
     character = models.ForeignKey("Character", on_delete=models.CASCADE)
 
 
-class MapPin(models.Model):
+class Pin(models.Model):
     chapter_number = models.ForeignKey("Chapter", on_delete=models.CASCADE)
-    point_of_view = models.ForeignKey("PointOfView", on_delete=models.CASCADE)
+    point_of_view = models.ForeignKey("PoV", on_delete=models.CASCADE)
     start_x = models.FloatField()
     start_y = models.FloatField()
     end_x = models.FloatField()
