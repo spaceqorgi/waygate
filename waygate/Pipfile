@@ -8,8 +8,8 @@ verify_ssl = true
 [packages]
 djangorestframework = "*"
 django-cors-headers = "*"
-python-language-server = {extras = ["all"],version = "*"}
 django = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
