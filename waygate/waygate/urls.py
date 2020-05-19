@@ -15,8 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+
+from map import views
+
+router = routers.DefaultRouter()
+router.register(r'book', views.BookView, 'book')
+router.register(r'chapter', views.ChapterView, 'chapter')
+router.register(r'character', views.ChapterView, 'character')
+router.register(r'pov', views.PoVView, 'pov')
+router.register(r'pin', views.PinView, 'pin')
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('map/', include('map.urls')),
     path('admin/', admin.site.urls),
 ]
