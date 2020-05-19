@@ -4,31 +4,39 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic, View
 from django.db.models import F
+from rest_framework import viewsets
 
-from .models import Book, Chapter
+from .serializers import BookSerializer, ChapterSerializer, CharacterSerializer, PoVSerializer, PinSerializer
+from .models import Book, Chapter, Character, PoV, Pin
 
 
 class IndexView(View):
-    message = 'Welcome to the Wheel of Time interactive map'
+    message = "Welcome to the Wheel of Time interactive map"
 
     def get(self, request):
         return HttpResponse(self.message)
 
 
-class BookView(generic.ListView):
-    template_name = 'map/book.html'
-    context_object_name = 'book_list'
-
-    def get_queryset(self):
-        """Return a list of books"""
-        return Book.objects.order_by('book_number')
+class BookView(viewsets.ModelViewSet):
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()
 
 
-class BookDetailView(generic.DetailView):
-    model = Book
-    template_name = 'map/book_detail.html'
+class ChapterView(viewsets.ModelViewSet):
+    serializer_class = ChapterSerializer
+    queryset = Chapter.objects.all()
 
 
-class ChapterView(generic.DetailView):
-    model = Chapter
-    template_name = 'map/chapter.html'
+class CharacterView(viewsets.ModelViewSet):
+    serializer_class = CharacterSerializer
+    queryset = Character.objects.all()
+
+
+class PoVView(viewsets.ModelViewSet):
+    serializer_class = PoVSerializer
+    queryset = PoV.objects.all()
+
+
+class PinView(viewsets.ModelViewSet):
+    serializer_class = PinSerializer
+    queryset = Pin.objects.all()
