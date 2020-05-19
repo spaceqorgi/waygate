@@ -23,8 +23,7 @@ class Chapter(models.Model):
 class Character(models.Model):
     display_name = models.CharField(max_length=200)
     fullname = models.CharField(max_length=200)
-    # TODO: Make this categorized
-    color = models.CharField(max_length=7)
+    color = models.CharField(max_length=7, default="#FFFFFF")
 
     def __str__(self):
         return self.display_name
@@ -36,11 +35,21 @@ class PoV(models.Model):
 
 
 class Pin(models.Model):
-    chapter_number = models.ForeignKey("Chapter", on_delete=models.CASCADE)
+    ld = 'ld'
+    tv = 'tv'
+    sk = 'sk'
+    TYPE_CHOICES = [
+        ('ld', 'Travel by land'),
+        ('se', 'Travel by sea'),
+        ('tv', 'Travel by Gateway'),
+        ('sk', 'Skim by Gateway'),
+        ('bt', 'Battle'),
+        ('rt', 'Rest')
+    ]
+    chapter = models.ForeignKey("Chapter", on_delete=models.CASCADE)
     point_of_view = models.ForeignKey("PoV", on_delete=models.CASCADE)
     start_x = models.FloatField()
     start_y = models.FloatField()
     end_x = models.FloatField()
     end_y = models.FloatField()
-    # TODO: Make this categorized
-    type = models.CharField(max_length=100)
+    type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ld)
