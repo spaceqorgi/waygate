@@ -33,8 +33,7 @@ class PinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pin
         fields = (
-            "chapter",
-            "point_of_view",
+            "pov",
             "start_x",
             "start_y",
             "end_x",

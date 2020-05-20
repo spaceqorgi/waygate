@@ -33,23 +33,31 @@ class PoV(models.Model):
     chapter = models.ForeignKey("Chapter", on_delete=models.CASCADE)
     character = models.ForeignKey("Character", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.character.__str__() + " in " + self.chapter.__str__()
+
 
 class Pin(models.Model):
     ld = 'ld'
+    se = 'se'
     tv = 'tv'
     sk = 'sk'
+    bt = 'bt'
+    rt = 'rt'
     TYPE_CHOICES = [
-        ('ld', 'Travel by land'),
-        ('se', 'Travel by sea'),
-        ('tv', 'Travel by Gateway'),
-        ('sk', 'Skim by Gateway'),
-        ('bt', 'Battle'),
-        ('rt', 'Rest')
+        (ld, 'Travel by land'),
+        (se, 'Travel by sea'),
+        (tv, 'Travel by Gateway'),
+        (sk, 'Skim by Gateway'),
+        (bt, 'Battle'),
+        (rt, 'Rest')
     ]
-    chapter = models.ForeignKey("Chapter", on_delete=models.CASCADE)
-    point_of_view = models.ForeignKey("PoV", on_delete=models.CASCADE)
+    pov = models.ForeignKey("Pov", on_delete=models.CASCADE)
     start_x = models.FloatField()
     start_y = models.FloatField()
     end_x = models.FloatField()
     end_y = models.FloatField()
     type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ld)
+
+    def __str__(self):
+        return self.pov.__str__()
