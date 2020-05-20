@@ -7,9 +7,10 @@ from .models import Book, Chapter, Character, PoV, Pin
 
 
 class IndexView(View):
+    # TODO Remove this?
     message = "Welcome to the Wheel of Time interactive map"
 
-    def get(self, request):
+    def get(self):
         return HttpResponse(self.message)
 
 
