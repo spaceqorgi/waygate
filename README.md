@@ -50,6 +50,7 @@ Book list https://en.wikipedia.org/wiki/The_Wheel_of_Time
 Chapter summary https://dragonmount.com/news/book-news/booksummaries/
 List of Point of View Characters https://wot.fandom.com/wiki/List_of_Point_of_View_Characters
 Color scheme https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+Using HTML5 Canvas with React, Sarah Bruce https://blog.cloudboost.io/using-html5-canvas-with-react-ff7d93f5dc76 
 
 # Interesting resource
 
