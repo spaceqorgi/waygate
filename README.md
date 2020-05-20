@@ -2,6 +2,15 @@
 
 An interactive companion map to the Wheel of Time series by Robert Jordan.
 
+# Steps (Drawing and diagraming)
+
+1. System design
+2. Database design
+3. UI Design
+4. Develop backend
+5. Develop frontend
+6. Piecing it together
+
 # Setup React frontend
 
 Tutorial: Intro to React
