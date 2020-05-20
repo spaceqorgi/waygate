@@ -29,11 +29,11 @@ class CharacterView(viewsets.ModelViewSet):
     queryset = Character.objects.all()
 
 
-class PoVView(viewsets.ModelViewSet):
+class NarratorView(viewsets.ModelViewSet):
     serializer_class = NarratorSerializer
     queryset = Narrator.objects.all()
 
 
-class PinView(viewsets.ModelViewSet):
+class PointView(viewsets.ModelViewSet):
     serializer_class = PointSerializer
     queryset = Point.objects.all()

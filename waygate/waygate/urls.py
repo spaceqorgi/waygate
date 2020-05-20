@@ -23,8 +23,8 @@ router = routers.DefaultRouter()
 router.register(r'book', views.BookView, 'book')
 router.register(r'chapter', views.ChapterView, 'chapter')
 router.register(r'character', views.ChapterView, 'character')
-router.register(r'pov', views.PoVView, 'pov')
-router.register(r'pin', views.PinView, 'pin')
+router.register(r'pov', views.NarratorView, 'pov')
+router.register(r'pin', views.PointView, 'pin')
 
 urlpatterns = [
     path('api/', include(router.urls)),
