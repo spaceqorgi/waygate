@@ -1,9 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views import generic, View
-from django.db.models import F
+from django.http import HttpResponse
+from django.views import View
 from rest_framework import viewsets
 
 from .serializers import BookSerializer, ChapterSerializer, CharacterSerializer, PoVSerializer, PinSerializer
