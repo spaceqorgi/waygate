@@ -11,8 +11,10 @@ class Canvas extends React.Component {
 
         img.onload = () => {
             ctx.drawImage(img, 0, 0);
-            ctx.font = "40px Courier";
-            ctx.fillText(this.props.text, 210, 75)
+            ctx.moveTo(1530, 1294)
+            ctx.lineTo(1571, 1187)
+            ctx.lineTo(1844, 1263)
+            ctx.stroke();
         }
     }
     
