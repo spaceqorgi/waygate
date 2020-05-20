@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from .models import Book, Chapter, Character, PoV, Pin
+from .models import Book, Chapter, Character, Narrator, Point
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -23,17 +23,17 @@ class CharacterSerializer(serializers.ModelSerializer):
         fields = ("display_name", "fullname", "color")
 
 
-class PoVSerializer(serializers.ModelSerializer):
+class NarratorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PoV
+        model = Narrator
         fields = ("chapter", "character")
 
 
-class PinSerializer(serializers.ModelSerializer):
+class PointSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Pin
+        model = Point
         fields = (
-            "pov",
+            "narrator",
             "start_x",
             "start_y",
             "end_x",

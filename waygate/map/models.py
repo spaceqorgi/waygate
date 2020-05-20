@@ -29,7 +29,7 @@ class Character(models.Model):
         return self.display_name
 
 
-class PoV(models.Model):
+class Narrator(models.Model):
     chapter = models.ForeignKey("Chapter", on_delete=models.CASCADE)
     character = models.ForeignKey("Character", on_delete=models.CASCADE)
 
@@ -37,7 +37,7 @@ class PoV(models.Model):
         return self.character.__str__() + " in " + self.chapter.__str__()
 
 
-class Pin(models.Model):
+class Point(models.Model):
     ld = 'ld'
     se = 'se'
     tv = 'tv'
@@ -52,7 +52,7 @@ class Pin(models.Model):
         (bt, 'Battle'),
         (rt, 'Rest')
     ]
-    pov = models.ForeignKey("Pov", on_delete=models.CASCADE)
+    narrator = models.ForeignKey("Narrator", on_delete=models.CASCADE)
     start_x = models.FloatField()
     start_y = models.FloatField()
     end_x = models.FloatField()
@@ -60,4 +60,4 @@ class Pin(models.Model):
     type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ld)
 
     def __str__(self):
-        return self.pov.__str__()
+        return self.narrator.__str__()

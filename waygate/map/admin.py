@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Book, Chapter, Character, PoV, Pin
+from .models import Book, Chapter, Character, Narrator, Point
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -9,5 +9,5 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(Book)
 admin.site.register(Chapter)
 admin.site.register(Character)
-admin.site.register(PoV)
-admin.site.register(Pin)
+admin.site.register(Narrator)
+admin.site.register(Point)

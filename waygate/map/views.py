@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.views import View
 from rest_framework import viewsets
 
-from .serializers import BookSerializer, ChapterSerializer, CharacterSerializer, PoVSerializer, PinSerializer
-from .models import Book, Chapter, Character, PoV, Pin
+from .serializers import BookSerializer, ChapterSerializer, CharacterSerializer, NarratorSerializer, PointSerializer
+from .models import Book, Chapter, Character, Narrator, Point
 
 
 class IndexView(View):
@@ -30,10 +30,10 @@ class CharacterView(viewsets.ModelViewSet):
 
 
 class PoVView(viewsets.ModelViewSet):
-    serializer_class = PoVSerializer
-    queryset = PoV.objects.all()
+    serializer_class = NarratorSerializer
+    queryset = Narrator.objects.all()
 
 
 class PinView(viewsets.ModelViewSet):
-    serializer_class = PinSerializer
-    queryset = Pin.objects.all()
+    serializer_class = PointSerializer
+    queryset = Point.objects.all()
