@@ -2,23 +2,34 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+class Canvas extends React.Component {
+
+    componentDidMount() {
+        const canvas = this.refs.canvas;
+        const ctx = canvas.getContext("2d");
+        const img = this.refs.image;
+
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0);
+            ctx.font = "40px Courier";
+            ctx.fillText(this.props.text, 210, 75)
+        }
+    }
+    
+    render() {
+        return(
+            <div>
+                <canvas ref="canvas" width={3374} height={2427} />
+                <img ref="image" src={require('./images/map-big-clean.png')} className="hidden" />
+            </div>
+        );
+    }
+}
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Canvas />
     </div>
   );
 }
