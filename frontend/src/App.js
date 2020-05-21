@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import { ButtonGroup, Button, Container, Row, Col, Image } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { MapInteractionCSS } from 'react-map-interaction';
 
 class Canvas extends React.Component {
   componentDidMount() {
@@ -9,6 +12,7 @@ class Canvas extends React.Component {
 
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
+      ctx.lineWidth = 10;
       ctx.moveTo(1500, 1291)
       ctx.lineTo(1531, 1293)
       ctx.stroke();
@@ -16,10 +20,12 @@ class Canvas extends React.Component {
   }
 
   render() {
+    let height = 3374;
+    let width = 2427;
     return (
-      <div>
-        <canvas ref="canvas" width={3374} height={2427} />
-        <img ref="image" alt="map" src={require('./images/map-big-clean.png')} className="hidden" />
+      <div className>
+        <canvas ref="canvas" width={height} height={width} />
+        <Image fluid ref="image" alt="map" src={require('./images/map-big-clean.png')} className="hidden" />
       </div>
     );
   }
@@ -64,13 +70,13 @@ class Chapter extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
+        <ButtonGroup vertical>
           {items.map(item => (
-            <li key={item.chapter_number}>
+            <Button key={item.chapter_number}>
               {item.chapter_number} {item.chapter_name}
-            </li>
+            </Button>
           ))}
-        </ul>
+        </ButtonGroup>
       )
     }
   }
@@ -115,13 +121,13 @@ class Book extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
+        <ButtonGroup vertical>
           {items.map(item => (
-            <li key={item.book_number}>
+            <Button key={item.book_number}>
               {item.book_number} {item.book_name}
-            </li>
+            </Button>
           ))}
-        </ul>
+        </ButtonGroup>
       )
     }
   }
@@ -130,15 +136,21 @@ class Book extends React.Component {
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="Book">
-          <Book />
-        </div>
-        <div className="Chapter">
-          <Chapter />
-        </div>
-        <Canvas />
-      </div>
+      <Container fluid className="App">
+        <Row>
+          <Col lg={8}>
+            <MapInteractionCSS scale="0.35">
+              <Canvas />
+            </MapInteractionCSS>
+          </Col>
+          <Col lg={2} className="Book">
+            <Book />
+          </Col>
+          <Col lg={2} className="Chapter">
+            <Chapter />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
