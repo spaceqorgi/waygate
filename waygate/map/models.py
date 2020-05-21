@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Book(models.Model):
-    book_number = models.PositiveSmallIntegerField()
+    book_number = models.PositiveSmallIntegerField(primary_key=True)
     book_name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -11,7 +11,7 @@ class Book(models.Model):
 
 class Chapter(models.Model):
     book = models.ForeignKey("Book", on_delete=models.CASCADE)
-    chapter_number = models.PositiveSmallIntegerField()
+    chapter_number = models.PositiveSmallIntegerField(primary_key=True)
     chapter_name = models.CharField(max_length=200)
     period = models.CharField(max_length=200)
     summary = models.TextField()
