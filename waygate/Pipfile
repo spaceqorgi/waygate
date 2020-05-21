@@ -10,6 +10,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 django = "*"
 psycopg2 = "*"
+coreapi = "*"
 
 [requires]
 python_version = "3.8"
