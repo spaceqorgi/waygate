@@ -34,30 +34,32 @@ class Narrator(models.Model):
     character = models.ForeignKey("Character", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.character.__str__() + " in " + self.chapter.__str__()
+        return "{} in Chapter {}: {}".format(self.character.__str__(),
+                                             self.chapter.chapter_number,
+                                             self.chapter.__str__())
 
 
 class Point(models.Model):
     ld = 'ld'
     se = 'se'
     tv = 'tv'
-    sk = 'sk'
+    wg = 'wg'
     bt = 'bt'
-    rt = 'rt'
+    cp = 'cp'
+    ev = 'ev'
     TYPE_CHOICES = [
         (ld, 'Travel by land'),
         (se, 'Travel by sea'),
         (tv, 'Travel by Gateway'),
-        (sk, 'Skim by Gateway'),
+        (wg, 'Travel by Waygate'),
         (bt, 'Battle'),
-        (rt, 'Rest')
+        (cp, 'Camping'),
+        (ev, 'Event')
     ]
     narrator = models.ForeignKey("Narrator", on_delete=models.CASCADE)
-    start_x = models.FloatField()
-    start_y = models.FloatField()
-    end_x = models.FloatField()
-    end_y = models.FloatField()
-    type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ld)
+    x = models.FloatField()
+    y = models.FloatField()
+    type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ev)
 
     def __str__(self):
         return self.narrator.__str__()

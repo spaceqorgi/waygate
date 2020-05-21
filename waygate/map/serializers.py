@@ -34,9 +34,7 @@ class PointSerializer(serializers.ModelSerializer):
         model = Point
         fields = (
             "narrator",
-            "start_x",
-            "start_y",
-            "end_x",
-            "end_y",
+            "x",
+            "y",
             "type"
         )
