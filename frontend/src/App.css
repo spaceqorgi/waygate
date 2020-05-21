@@ -38,5 +38,10 @@
 }
 
 .hidden {
-    display: none;
+  display: none;
+}
+
+.Map {
+  width: 50%;
+  height: auto;
 }
