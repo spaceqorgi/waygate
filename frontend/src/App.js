@@ -25,7 +25,57 @@ class Canvas extends React.Component {
   }
 }
 
+class Chapter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    }
+  }
+
+  componentDidMount() {
+    let url = "http://127.0.0.1:8000/api/chapter"
+
+    fetch(url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          })
         }
+      )
+  }
+
+  render() {
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.chapter_number}>
+              {item.chapter_number} {item.chapter_name}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  }
+}
+
 class Book extends React.Component {
   constructor(props) {
     super(props);
@@ -83,6 +133,9 @@ class App extends Component {
       <div className="App">
         <div className="Book">
           <Book />
+        </div>
+        <div className="Chapter">
+          <Chapter />
         </div>
         <Canvas />
       </div>
