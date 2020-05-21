@@ -1,0 +1,69 @@
+* waygate
+
+An interactive companion map to the Wheel of Time series by Robert
+Jordan.
+
+* Steps (Drawing and diagraming)
+
+1. System design
+2. Database design
+3. UI Design
+4. Develop backend
+5. Develop frontend
+6. Piecing it together
+
+* Setup React frontend
+
+Tutorial: Intro to React
+
+https://reactjs.org/tutorial/tutorial.html
+
+* Setup Django backend
+
+Writing your first Django app (Series)
+
+https://docs.djangoproject.com/en/3.0/intro/tutorial01/
+
+Build a To-Do application Using Django and React
+
+https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react
+
+* Setup PostgreSQL
+
+Setup PostgreSQL database
+
+https://wiki.archlinux.org/index.php/PostgreSQL
+
+Setup Django to use PostgreSQL backend
+
+https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04
+
+* Tips & Tricks
+
+Reset sequence
+
+#+BEGIN_SRC sql
+ALTER SEQUENCE map_chapter_id_seq RESTART;
+UPDATE map_chapter set id = DEFAULT;
+#+END_SRC
+
+* Resources
+
+Book list https://en.wikipedia.org/wiki/The_Wheel_of_Time Chapter
+summary https://dragonmount.com/news/book-news/booksummaries/ List of
+Point of View Characters
+https://wot.fandom.com/wiki/List_of_Point_of_View_Characters Color
+scheme
+https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+Using HTML5 Canvas with React, Sarah Bruce
+https://blog.cloudboost.io/using-html5-canvas-with-react-ff7d93f5dc76
+Statistical Analysis https://wot.fandom.com/wiki/Statistical_analysis
+TarValon.net
+https://library.tarvalon.net/index.php?title=Chapter_Summaries AJAX and
+APIS - React https://reactjs.org/docs/faq-ajax.html
+react-map-interaction
+https://github.com/transcriptic/react-map-interaction
+
+* TODOLIST
+** TODO Find good JS/CSS/React image zoom library for map
+** TODO Or, Make map-interaction zoom faster
