@@ -8,13 +8,13 @@ from .models import Book, Chapter, Character, Narrator, Point
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ("id", "book_number", "book_name")
+        fields = ("book_number", "book_name")
 
 
 class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
-        fields = ("id", "chapter_number", "chapter_name", "period", "summary")
+        fields = ("chapter_number", "chapter_name", "period", "summary")
 
 
 class CharacterSerializer(serializers.ModelSerializer):

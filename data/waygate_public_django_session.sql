@@ -1,18 +1,2 @@
-create table django_session
-(
-    session_key  varchar(40)              not null
-        constraint django_session_pkey
-            primary key,
-    session_data text                     not null,
-    expire_date  timestamp with time zone not null
-);
-
-alter table django_session
-    owner to admin;
-
-create index django_session_session_key_c0390e0f_like
-    on django_session (session_key);
-
-create index django_session_expire_date_a5c62663
-    on django_session (expire_date);
-
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('fcqbweck2p690haywpnx6lcv449buti7', 'MzM3ZTUwZTE4NmYxYWM2MTZlMWU1NTYyZTQ0ZjcyNTZhNWUzNjMxODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiY2M4NmEzYmNmNjU2NmUwYjJlMjVlNmNhNjgwYjIyYTI3YjY4ZWZmIn0=', '2020-06-03 15:17:41.921281');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('mr7q2iiz0d7gr27dddvyvxslgyrhap6s', 'MzM3ZTUwZTE4NmYxYWM2MTZlMWU1NTYyZTQ0ZjcyNTZhNWUzNjMxODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiY2M4NmEzYmNmNjU2NmUwYjJlMjVlNmNhNjgwYjIyYTI3YjY4ZWZmIn0=', '2020-06-03 15:22:10.157794');

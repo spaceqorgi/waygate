@@ -1,16 +1,3 @@
-create table django_migrations
-(
-    id      serial                   not null
-        constraint django_migrations_pkey
-            primary key,
-    app     varchar(255)             not null,
-    name    varchar(255)             not null,
-    applied timestamp with time zone not null
-);
-
-alter table django_migrations
-    owner to admin;
-
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (1, 'contenttypes', '0001_initial', '2020-05-19 09:07:46.007401');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (2, 'auth', '0001_initial', '2020-05-19 09:07:46.032981');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (3, 'admin', '0001_initial', '2020-05-19 09:07:46.083691');
@@ -36,3 +23,13 @@ INSERT INTO public.django_migrations (id, app, name, applied) VALUES (22, 'map',
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (23, 'map', '0006_auto_20200519_1212', '2020-05-19 12:13:10.921275');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (24, 'map', '0007_auto_20200519_1227', '2020-05-19 12:27:05.690845');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (25, 'map', '0008_auto_20200519_1231', '2020-05-19 12:31:10.408645');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (26, 'map', '0009_auto_20200519_1301', '2020-05-19 13:01:39.350767');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (27, 'map', '0010_auto_20200519_1303', '2020-05-19 13:03:09.216103');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (28, 'map', '0011_auto_20200519_1303', '2020-05-19 13:03:53.084144');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (29, 'map', '0012_auto_20200519_1307', '2020-05-19 13:08:00.970389');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (30, 'map', '0013_auto_20200520_0620', '2020-05-20 06:20:08.794539');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (31, 'map', '0014_remove_pin_pov', '2020-05-20 06:56:21.934728');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (32, 'map', '0015_pin_pov', '2020-05-20 06:57:55.799374');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (33, 'map', '0016_auto_20200520_1428', '2020-05-20 14:28:33.007507');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (34, 'map', '0017_auto_20200520_1545', '2020-05-20 15:45:16.679515');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (35, 'map', '0018_auto_20200520_1651', '2020-05-20 16:51:54.408498');

@@ -1,24 +1,3 @@
-create table auth_permission
-(
-    id              serial       not null
-        constraint auth_permission_pkey
-            primary key,
-    name            varchar(255) not null,
-    content_type_id integer      not null
-        constraint auth_permission_content_type_id_2f476e4b_fk_django_co
-            references django_content_type
-            deferrable initially deferred,
-    codename        varchar(100) not null,
-    constraint auth_permission_content_type_id_codename_01ab375a_uniq
-        unique (content_type_id, codename)
-);
-
-alter table auth_permission
-    owner to admin;
-
-create index auth_permission_content_type_id_2f476e4b
-    on auth_permission (content_type_id);
-
 INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (1, 'Can add book', 1, 'add_book');
 INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (2, 'Can change book', 1, 'change_book');
 INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (3, 'Can delete book', 1, 'delete_book');
@@ -71,3 +50,11 @@ INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES 
 INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (50, 'Can change pin', 4, 'change_pin');
 INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (51, 'Can delete pin', 4, 'delete_pin');
 INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (52, 'Can view pin', 4, 'view_pin');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (53, 'Can add narrator', 12, 'add_narrator');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (54, 'Can change narrator', 12, 'change_narrator');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (55, 'Can delete narrator', 12, 'delete_narrator');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (56, 'Can view narrator', 12, 'view_narrator');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (57, 'Can add point', 4, 'add_point');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (58, 'Can change point', 4, 'change_point');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (59, 'Can delete point', 4, 'delete_point');
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (60, 'Can view point', 4, 'view_point');

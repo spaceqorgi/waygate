@@ -1,17 +1,3 @@
-create table django_content_type
-(
-    id        serial       not null
-        constraint django_content_type_pkey
-            primary key,
-    app_label varchar(100) not null,
-    model     varchar(100) not null,
-    constraint django_content_type_app_label_model_76bd3d3b_uniq
-        unique (app_label, model)
-);
-
-alter table django_content_type
-    owner to admin;
-
 INSERT INTO public.django_content_type (id, app_label, model) VALUES (1, 'map', 'book');
 INSERT INTO public.django_content_type (id, app_label, model) VALUES (2, 'map', 'character');
 INSERT INTO public.django_content_type (id, app_label, model) VALUES (3, 'map', 'chapter');
@@ -22,5 +8,5 @@ INSERT INTO public.django_content_type (id, app_label, model) VALUES (8, 'auth',
 INSERT INTO public.django_content_type (id, app_label, model) VALUES (9, 'auth', 'user');
 INSERT INTO public.django_content_type (id, app_label, model) VALUES (10, 'contenttypes', 'contenttype');
 INSERT INTO public.django_content_type (id, app_label, model) VALUES (11, 'sessions', 'session');
-INSERT INTO public.django_content_type (id, app_label, model) VALUES (4, 'map', 'pin');
-INSERT INTO public.django_content_type (id, app_label, model) VALUES (12, 'map', 'pov');
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (12, 'map', 'narrator');
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (4, 'map', 'point');
