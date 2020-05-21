@@ -26,24 +26,68 @@ class Canvas extends React.Component {
 }
 
         }
+class Book extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
     }
-    
-    render() {
-        return(
-            <div>
-                <canvas ref="canvas" width={3374} height={2427} />
-                <img ref="image" src={require('./images/map-big-clean.png')} className="hidden" />
-            </div>
-        );
+  }
+
+  componentDidMount() {
+    let url = "http://127.0.0.1:8000/api/book"
+
+    fetch(url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          })
+        }
+      )
+  }
+
+  render() {
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.book_number}>
+              {item.book_number} {item.book_name}
+            </li>
+          ))}
+        </ul>
+      )
     }
+  }
 }
 
-function App() {
-  return (
-    <div className="App">
-      <Canvas />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="Book">
+          <Book />
+        </div>
+        <Canvas />
+      </div>
+    );
+  }
 }
 
 export default App;
