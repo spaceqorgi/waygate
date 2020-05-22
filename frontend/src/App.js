@@ -12,7 +12,7 @@ class Canvas extends React.Component {
 
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
-      ctx.lineWidth = 10;
+      ctx.lineWidth = 3;
       ctx.moveTo(1500, 1291)
       ctx.lineTo(1531, 1293)
       ctx.stroke();
@@ -138,15 +138,20 @@ class App extends Component {
     return (
       <Container fluid className="App">
         <Row>
-          <Col lg={8}>
-            <MapInteractionCSS scale="0.35">
+          <Col lg={8} md={12}>
+            <MapInteractionCSS
+              scale={0.35}
+              defaultScale={0.35}
+              height="700px"
+              width="100%"
+            >
               <Canvas />
             </MapInteractionCSS>
           </Col>
-          <Col lg={2} className="Book">
+          <Col lg={2} md={6} className="Book">
             <Book />
           </Col>
-          <Col lg={2} className="Chapter">
+          <Col lg={2} md={6} className="Chapter">
             <Chapter />
           </Col>
         </Row>
