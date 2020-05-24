@@ -1,0 +1,3 @@
+[submodule "react-map-interaction"]
+	path = react-map-interaction
+	url = git@github.com:smoogi/react-map-interaction.git
