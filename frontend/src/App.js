@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { ButtonGroup, Button, Container, Row, Col, Image } from 'react-bootstrap'
+import { Accordion, Card, Button, ButtonGroup, Container, Row, Col, Image } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MapInteractionCSS } from 'react-map-interaction';
 
@@ -70,13 +70,18 @@ class Chapter extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ButtonGroup vertical>
+        <Accordion>
           {items.map(item => (
-            <Button key={item.chapter_number}>
+          <Card key={item.chapter_number}>
+            <Accordion.Toggle as={Card.Header} eventKey={item.chapter_number}>
               {item.chapter_number} {item.chapter_name}
-            </Button>
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey={item.chapter_number}>
+              <Card.Body> {item.summary} </Card.Body>
+            </Accordion.Collapse>
+          </Card>
           ))}
-        </ButtonGroup>
+        </Accordion>
       )
     }
   }
