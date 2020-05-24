@@ -1,0 +1,9 @@
+* Inbox
+** TODO Make presentation
+
+[[file:~/waygate/README.org::*Resources][Resources]]
+** TODO Check out accordian
+
+[[file:~/waygate/README.org::*Resources][Resources]]
+** DONE Find good JS/CSS/React image zoom library for map
+** DONE Or, Make map-interaction zoom faster
