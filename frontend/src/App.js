@@ -153,11 +153,11 @@ class App extends Component {
               <Canvas />
             </MapInteractionCSS>
           </Col>
-          <Col lg={2} md={6} className="Book">
-            <Book />
-          </Col>
-          <Col lg={2} md={6} className="Chapter">
+          <Col lg={3} md={6} className="Chapter">
             <Chapter />
+          </Col>
+          <Col lg={3} md={6} className="Book">
+            <Book />
           </Col>
         </Row>
       </Container>
