@@ -138,9 +138,9 @@ class App extends Component {
     return (
       <Container fluid className="App">
         <Row>
-          <Col lg={8} md={12}>
+          <Col lg={9} md={12}>
             <MapInteractionCSS
-              scale={0.35}
+              scale={0.30}
               defaultScale={0.35}
               height="700px"
               width="100%"
