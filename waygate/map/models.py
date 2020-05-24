@@ -24,6 +24,7 @@ class Character(models.Model):
     display_name = models.CharField(max_length=200)
     fullname = models.CharField(max_length=200)
     color = models.CharField(max_length=7, default="#FFFFFF")
+    use_white_text = models.BooleanField(default=True)
 
     def __str__(self):
         return self.display_name
