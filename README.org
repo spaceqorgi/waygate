@@ -75,7 +75,3 @@ UPDATE map_chapter set id = DEFAULT;
 - TarValon.net https://library.tarvalon.net/index.php?title=Chapter_Summaries
 - AJAX and APIS - React https://reactjs.org/docs/faq-ajax.html
 - react-map-interaction https://github.com/transcriptic/react-map-interaction
-
-* Inbox
-** DONE Find good JS/CSS/React image zoom library for map
-** DONE Or, Make map-interaction zoom faster
