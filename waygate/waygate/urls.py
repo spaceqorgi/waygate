@@ -23,7 +23,7 @@ from map import views
 router = routers.DefaultRouter()
 router.register(r'book', views.BookView, 'book')
 router.register(r'chapter', views.ChapterView, 'chapter')
-router.register(r'character', views.ChapterView, 'character')
+router.register(r'character', views.CharacterView, 'character')
 router.register(r'narrator', views.NarratorView, 'narrator')
 router.register(r'point', views.PointView, 'point')
 

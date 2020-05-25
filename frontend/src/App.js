@@ -5,17 +5,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { MapInteractionCSS } from 'react-map-interaction';
 
 class Canvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      narrator: props.narrator
+    }
+  }
+
   componentDidMount() {
-    const canvas = this.canvas;
+    const canvas = this.refs.canvas;
     const ctx = canvas.getContext("2d");
-    const img = this.image;
+    const img = this.refs.image;
 
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
       ctx.lineWidth = 3;
-      ctx.moveTo(1500, 1291)
-      ctx.lineTo(1531, 1293)
-      ctx.stroke();
+
+      for (const narrator of this.props.narrators){
+        ctx.lineTo(narrator.points.x, narrator.points.y)
+        ctx.stroke();
+      }
     }
   }
 
@@ -77,7 +86,10 @@ class Chapter extends React.Component {
               {item.chapter_number} {item.chapter_name}
             </Accordion.Toggle>
             <Accordion.Collapse eventKey={item.chapter_number}>
-              <Card.Body> {item.summary} </Card.Body>
+              <Card.Body>
+                <strong>{item.period}</strong>
+                <p>{item.summary}</p>
+              </Card.Body>
             </Accordion.Collapse>
           </Card>
           ))}

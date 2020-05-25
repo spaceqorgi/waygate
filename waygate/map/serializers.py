@@ -11,24 +11,6 @@ class BookSerializer(serializers.ModelSerializer):
         fields = ("book_number", "book_name")
 
 
-class ChapterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Chapter
-        fields = ("chapter_number", "chapter_name", "period", "summary")
-
-
-class CharacterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Character
-        fields = ("display_name", "fullname", "color")
-
-
-class NarratorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Narrator
-        fields = ("chapter", "character")
-
-
 class PointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Point
@@ -38,3 +20,25 @@ class PointSerializer(serializers.ModelSerializer):
             "y",
             "type"
         )
+
+
+class CharacterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Character
+        fields = ("display_name", "fullname", "color")
+
+
+class NarratorSerializer(serializers.ModelSerializer):
+    points = PointSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Narrator
+        fields = ("chapter", "character", "points",)
+
+
+class ChapterSerializer(serializers.ModelSerializer):
+    narrators = NarratorSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Chapter
+        fields = ("chapter_number", "chapter_name", "period", "summary", "narrators",)

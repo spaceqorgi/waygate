@@ -31,7 +31,7 @@ class Character(models.Model):
 
 
 class Narrator(models.Model):
-    chapter = models.ForeignKey("Chapter", on_delete=models.CASCADE)
+    chapter = models.ForeignKey("Chapter", related_name='narrators', on_delete=models.CASCADE)
     character = models.ForeignKey("Character", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -57,7 +57,7 @@ class Point(models.Model):
         (cp, 'Camping'),
         (ev, 'Event')
     ]
-    narrator = models.ForeignKey("Narrator", on_delete=models.CASCADE)
+    narrator = models.ForeignKey("Narrator", related_name='points', on_delete=models.CASCADE)
     x = models.FloatField()
     y = models.FloatField()
     type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ev)
