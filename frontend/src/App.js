@@ -6,9 +6,9 @@ import { MapInteractionCSS } from 'react-map-interaction';
 
 class Canvas extends React.Component {
   componentDidMount() {
-    const canvas = this.refs.canvas;
+    const canvas = this.canvas;
     const ctx = canvas.getContext("2d");
-    const img = this.refs.image;
+    const img = this.image;
 
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
@@ -147,7 +147,7 @@ class App extends Component {
             <MapInteractionCSS
               scale={0.30}
               defaultScale={0.35}
-              height="700px"
+              height="800px"
               width="100%"
             >
               <Canvas />
