@@ -37,7 +37,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ("book_number", "book_name")
+        fields = ("book_number", "book_name", "chapters")
 
 
 class CharacterSerializer(serializers.ModelSerializer):
