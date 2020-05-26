@@ -38,7 +38,7 @@ class Narrator(models.Model):
 
 
 class Chapter(models.Model):
-    book = models.ForeignKey("Book", on_delete=models.CASCADE)
+    book = models.ForeignKey("Book", related_name='chapters', on_delete=models.CASCADE)
     chapter_number = models.PositiveSmallIntegerField(primary_key=True)
     chapter_name = models.CharField(max_length=200)
     period = models.CharField(max_length=200)

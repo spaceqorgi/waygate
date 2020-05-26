@@ -30,3 +30,19 @@ class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
         fields = ("chapter_number", "chapter_name", "period", "summary", "narrators",)
+
+
+class BookSerializer(serializers.ModelSerializer):
+    chapters = ChapterSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Book
+        fields = ("book_number", "book_name")
+
+
+class CharacterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Character
+        fields = ("display_name", "fullname", "color")
+
+
