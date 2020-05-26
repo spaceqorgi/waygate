@@ -65,38 +65,9 @@ class Chapter extends React.Component {
 }
 
 class Book extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    }
-  }
-
-  componentDidMount() {
-    let url = "http://127.0.0.1:8000/api/book"
-
-    fetch(url)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
-  }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items } = this.props;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -159,7 +130,7 @@ class App extends Component {
               width="100%"
             >
               <Canvas
-                narrators={this.state.items.narrator}
+                narrators={this.state.items.chapters.narrators}
               />
             </MapInteractionCSS>
           </Col>
@@ -167,11 +138,16 @@ class App extends Component {
             <Chapter
               error={this.state.error}
               isLoaded={this.state.isLoaded}
-              chapter={this.state.items}
+              chapter={this.state.items.chapters}
             />
           </Col>
+          // TODO Perhaps remove this
           <Col lg={3} md={6} className="Book">
-            <Book />
+            <Book
+                error={this.state.error}
+                isLoaded={this.state.isLoaded}
+                items={this.state.items}
+            />
           </Col>
         </Row>
       </Container>
