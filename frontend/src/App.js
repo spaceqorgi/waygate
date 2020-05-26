@@ -41,38 +41,9 @@ class Canvas extends React.Component {
 }
 
 class Chapter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    }
-  }
-
-  componentDidMount() {
-    let url = "http://127.0.0.1:8000/api/chapter"
-
-    fetch(url)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
-  }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items } = this.props;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -151,6 +122,37 @@ class Book extends React.Component {
 }
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    }
+  }
+
+  componentDidMount() {
+    let url = "http://127.0.0.1:8000/api/book"
+
+    fetch(url)
+        .then(res => res.json())
+        .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                items: result
+              });
+            },
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              })
+            }
+        )
+  }
+
   render() {
     return (
       <Container fluid className="App">
@@ -162,11 +164,17 @@ class App extends Component {
               height="800px"
               width="100%"
             >
-              <Canvas />
+              <Canvas
+                narrators={this.state.items.narrator}
+              />
             </MapInteractionCSS>
           </Col>
           <Col lg={3} md={6} className="Chapter">
-            <Chapter />
+            <Chapter
+              error={this.state.error}
+              isLoaded={this.state.isLoaded}
+              chapter={this.state.items}
+            />
           </Col>
           <Col lg={3} md={6} className="Book">
             <Book />
