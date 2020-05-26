@@ -5,12 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { MapInteractionCSS } from 'react-map-interaction';
 
 class Canvas extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      narrator: props.narrator
-    }
-  }
 
   componentDidMount() {
     const canvas = this.refs.canvas;
