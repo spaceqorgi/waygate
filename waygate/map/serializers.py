@@ -5,12 +5,6 @@ from rest_framework import serializers
 from .models import Book, Chapter, Character, Narrator, Point
 
 
-class BookSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Book
-        fields = ("book_number", "book_name")
-
-
 class PointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Point
@@ -20,12 +14,6 @@ class PointSerializer(serializers.ModelSerializer):
             "y",
             "type"
         )
-
-
-class CharacterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Character
-        fields = ("display_name", "fullname", "color")
 
 
 class NarratorSerializer(serializers.ModelSerializer):
