@@ -27,10 +27,8 @@ class Canvas extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.setState({
-      narrators: this.props.narrators
-    });
 
+    // Have to re-define canvas for some reason
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext("2d");
     const img = this.refs.image;
