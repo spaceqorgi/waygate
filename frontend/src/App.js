@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Accordion, Card, Button, ButtonGroup, Container, Row, Col, Image } from 'react-bootstrap'
+import { Accordion, Card, Button, ButtonGroup, Container, Row, Col} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MapInteractionCSS } from 'react-map-interaction';
 
@@ -50,15 +50,11 @@ class Canvas extends React.Component {
         for (const [p_id, point] of Object.entries(narrator.points)){
           // For each point, do
           console.log("DEBUG:  id:" + id);
-          if(p_id == 0){
+          if(p_id === 0){
             // Draw on the 1st point
             ctx.moveTo(point.x, point.y);
             ctx.beginPath();
- 	    ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-          } else if(p_id == 0) {
-            ctx.moveTo(point.x, point.y);
-            ctx.beginPath();
-            ctx.rect(point.x, point.y, 10, 10);
+            ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
           }
           else {
             ctx.lineTo(point.x, point.y);
