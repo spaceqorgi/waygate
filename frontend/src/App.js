@@ -142,6 +142,7 @@ class Chapter extends React.Component {
                         eventKey={item.chapter_number}
                     >
                       <Card.Body>
+                        <h1>{item.chapter_name}</h1>
                         <strong>{item.period}</strong>
                         <p>{item.summary}</p>
                       </Card.Body>
