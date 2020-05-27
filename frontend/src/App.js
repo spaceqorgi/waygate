@@ -3,6 +3,7 @@ import './App.css';
 import { Accordion, Card, Button, ButtonGroup, Container, Row, Col} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MapInteractionCSS } from 'react-map-interaction';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class Canvas extends React.Component {
           defaultScale={0.30}
           height="800px"
           width="100%"
-          defaultTranslation={{x: -600, y: -600}}
+          defaultTranslation={{x: 0, y: 0}}
       >
           <div>
             <canvas ref="canvas" width={height} height={width} />
@@ -102,6 +103,11 @@ class Chapter extends React.Component {
     this.setState({
       currentChapter: chapter
     })
+    console.log("DEBUG: You select chapter=" + this.state.currentChapter.chapter_number)
+    const { scrollbars } = this.refs;
+    const scrollHeight = scrollbars.getValues();
+    console.log("DEBUG: Scroll height=" + scrollHeight);
+    scrollbars.scrollTop(50 * chapter.chapter_number);
   }
 
   render() {
@@ -118,13 +124,17 @@ class Chapter extends React.Component {
                />
             </Col>
             <Col lg={3} md={6} className="Chapter">
+            <Scrollbars
+              ref="scrollbars"
+              style={{ width:500, height: 800}}
+            >
             <Accordion>
               {items.map(item => (
                   <Card key={item.chapter_number}>
                     <Accordion.Toggle
                         as={Card.Header}
                         eventKey={item.chapter_number}
-                        onClick={(i) => this.onChapterSelected(item)}
+                        onClick={() => this.onChapterSelected(item)}
                     >
                       Ch. {item.chapter_number}: {item.chapter_name}
                     </Accordion.Toggle>
@@ -139,6 +149,7 @@ class Chapter extends React.Component {
                   </Card>
               ))}
             </Accordion>
+            </Scrollbars>
             </Col>
           </Row>
       )
