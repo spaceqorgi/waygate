@@ -32,24 +32,35 @@ class Canvas extends React.Component {
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext("2d");
     const img = this.refs.image;
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
     ctx.drawImage(img, 0, 0);
-    ctx.lineWidth = 3;
-
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    
+    // Draw on the map using canvas, point, and narrators
     let narrators = this.props.narrators;
     if(narrators !== {}){
       console.log("DEBUG: You select a chapter");
       console.log(narrators);
       for (const [id, narrator] of Object.entries(narrators)){
-        let isFirstPoint = true;
-        for (const [id, point] of Object.entries(narrator.points)){
-          if(isFirstPoint){
-            ctx.moveTo(point.x, point.y)
-            isFirstPoint = false;
+        // For each narrator, do
+        console.log("DEBUG: point id:" + id);
+        ctx.strokeStyle = narrator.color;
+        for (const [p_id, point] of Object.entries(narrator.points)){
+          // For each point, do
+          console.log("DEBUG:  id:" + id);
+          if(p_id == 0){
+            // Draw on the 1st point
+            ctx.moveTo(point.x, point.y);
             ctx.beginPath();
-            ctx.rect(point.x, point.y, 10, 10)
-            ctx.stroke();
-          } else {
+ 	    ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+          } else if(p_id == 0) {
+            ctx.moveTo(point.x, point.y);
+            ctx.beginPath();
+            ctx.rect(point.x, point.y, 10, 10);
+          }
+          else {
             ctx.lineTo(point.x, point.y);
           }
           console.log(point);
