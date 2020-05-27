@@ -69,10 +69,18 @@ class Canvas extends React.Component {
     let height = 3374;
     let width = 2427;
     return (
-      <div>
-        <canvas ref="canvas" width={height} height={width} />
-        <img ref="image" alt="map" src={require('./images/map-big-clean.png')} className="hidden" />
-      </div>
+      <MapInteractionCSS
+          scale={0.80}
+          defaultScale={0.30}
+          height="800px"
+          width="100%"
+          defaultTranslation={{x: -600, y: -600}}
+      >
+          <div>
+            <canvas ref="canvas" width={height} height={width} />
+            <img ref="image" alt="map" src={require('./images/map-big-clean.png')} className="hidden" />
+          </div>
+      </MapInteractionCSS>
     );
   }
 }
@@ -102,16 +110,8 @@ class Chapter extends React.Component {
       return (
           <Row>
             <Col lg={9} md={12}>
-              <MapInteractionCSS
-                  scale={0.30}
-                  defaultScale={0.35}
-                  height="800px"
-                  width="100%"
-              >
-                <Canvas
-                  narrators={this.state.currentChapter.narrators}
-                />
-              </MapInteractionCSS>
+               <Canvas narrators={this.state.currentChapter.narrators}
+               />
             </Col>
             <Col lg={3} md={6} className="Chapter">
             <Accordion>
