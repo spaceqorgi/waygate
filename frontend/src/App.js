@@ -19,7 +19,6 @@ class Canvas extends React.Component {
 
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
-      ctx.lineWidth = 3;
     }
   }
 
