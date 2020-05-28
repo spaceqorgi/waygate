@@ -51,7 +51,7 @@ class Canvas extends React.Component {
         for (const [p_id, point] of Object.entries(narrator.points)){
           // For each point, do
           console.log("DEBUG:  id:" + id);
-          if(p_id === 0){
+          if(p_id == "0"){
             // Draw on the 1st point
             ctx.moveTo(point.x, point.y);
             ctx.beginPath();
