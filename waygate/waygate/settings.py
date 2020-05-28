@@ -127,6 +127,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080', 
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
