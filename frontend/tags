@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/0c78c0c4/
+.App	src/App.css	/^.App {$/;"	c
+.App-header	src/App.css	/^.App-header {$/;"	c
+.App-link	src/App.css	/^.App-link {$/;"	c
+.App-logo	src/App.css	/^  .App-logo {$/;"	c
+.App-logo	src/App.css	/^.App-logo {$/;"	c
+.Map	src/App.css	/^.Map {$/;"	c
+.hidden	src/App.css	/^.hidden {$/;"	c
+App	src/App.js	/^class App extends Component {$/;"	c
+Chapter	src/App.js	/^class Chapter extends React.Component {$/;"	c
+Map	src/App.js	/^class Map extends React.Component {$/;"	c
+body	src/index.css	/^body {$/;"	s
+checkValidServiceWorker	src/serviceWorker.js	/^function checkValidServiceWorker(swUrl, config) {$/;"	f
+code	src/index.css	/^code {$/;"	s
+componentDidMount	src/App.js	/^  componentDidMount() {$/;"	m	class:App
+componentDidMount	src/App.js	/^  componentDidMount() {$/;"	m	class:Map
+componentDidUpdate	src/App.js	/^  componentDidUpdate(prevProps, prevState, snapshot) {$/;"	m	class:Map
+constructor	src/App.js	/^  constructor(props) {$/;"	m	class:App
+constructor	src/App.js	/^  constructor(props) {$/;"	m	class:Chapter
+constructor	src/App.js	/^  constructor(props) {$/;"	m	class:Map
+currentChapter	src/App.js	/^      currentChapter: {},$/;"	p	class:Chapter.constructor.state
+drawX	src/App.js	/^function drawX(x, y, ctx) {$/;"	f
+error	src/App.js	/^      error: null,$/;"	p	class:App.constructor.state
+isLoaded	src/App.js	/^      isLoaded: false,$/;"	p	class:App.constructor.state
+isLocalhost	src/serviceWorker.js	/^const isLocalhost = Boolean($/;"	C
+items	src/App.js	/^      items: [],$/;"	p	class:App.constructor.state
+narrators	src/App.js	/^      narrators: this.props.narrators,$/;"	p	class:Map.constructor.state
+nsb0aa9e8b0101	src/logo.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 841.9 595.3">$/;"	n	uri:http://www.w3.org/2000/svg
+onChapterSelected	src/App.js	/^  onChapterSelected(chapter) {$/;"	m	class:Chapter
+register	src/serviceWorker.js	/^export function register(config) {$/;"	f
+registerValidSW	src/serviceWorker.js	/^function registerValidSW(swUrl, config) {$/;"	f
+render	src/App.js	/^  render() {$/;"	m	class:App
+render	src/App.js	/^  render() {$/;"	m	class:Chapter
+render	src/App.js	/^  render() {$/;"	m	class:Map
+shouldComponentUpdate	src/App.js	/^  shouldComponentUpdate(nextProps){$/;"	m	class:Map
+state	src/App.js	/^    this.state = {$/;"	c	class:App.constructor
+state	src/App.js	/^    this.state = {$/;"	c	class:Chapter.constructor
+state	src/App.js	/^    this.state = {$/;"	c	class:Map.constructor
+unregister	src/serviceWorker.js	/^export function unregister() {$/;"	f
+x	src/App.js	/^      x: this.props.x,$/;"	p	class:Map.constructor.state
+y	src/App.js	/^      y: this.props.y,$/;"	p	class:Map.constructor.state
