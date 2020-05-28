@@ -17,14 +17,6 @@ function drawX(x, y, ctx) {
 }
 
 class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      narrators: this.props.narrators,
-      x: this.props.x,
-      y: this.props.y,
-    }
-  }
 
   componentDidMount() {
     const canvas = this.refs.canvas;
@@ -37,7 +29,7 @@ class Map extends React.Component {
   }
 
   shouldComponentUpdate(nextProps){
-    return nextProps.narrators !== this.state.narrators;
+    return nextProps.narrators !== this.props.narrators;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -106,13 +98,14 @@ class Map extends React.Component {
   render() {
     let height = 3374;
     let width = 2427;
+    const { scale, translation } = this.props;
     return (
       <MapInteractionCSS
-          scale={0.80}
-          defaultScale={0.30}
+          scale={scale}
+          translation={translation}
+          onChange={({ scale, translation }) => this.setState({ scale, translation })}
           height="800px"
           width="100%"
-          defaultTranslation={{x: -600, y: -600}}
       >
           <div>
             <canvas ref="canvas" width={height} height={width} />
@@ -128,23 +121,31 @@ class Chapter extends React.Component {
     super(props);
     this.state = {
       currentChapter: {},
+      scale: 0.35,
+      translation: {
+        x: 0,
+        y: 0,
+      }
     }
   }
 
   onChapterSelected(chapter) {
-    console.log(chapter)
     this.setState({
-      currentChapter: chapter
+      currentChapter: chapter,
+      scale: 0.80,
+      translation: {
+        x: -600,
+        y: -600
+      }
     })
-    console.log("DEBUG: You select chapter=" + this.state.currentChapter.chapter_number)
+    console.log("DEBUG: You select chapter=" + chapter.chapter_number)
     const { scrollbars } = this.refs;
-    const scrollHeight = scrollbars.getValues();
-    console.log("DEBUG: Scroll height=" + scrollHeight);
     scrollbars.scrollTop(45 * chapter.chapter_number);
   }
 
   render() {
     const { error, isLoaded, items } = this.props;
+    const { currentChapter, scale, translation } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -153,7 +154,10 @@ class Chapter extends React.Component {
       return (
           <Row>
             <Col lg={9} md={12}>
-               <Map narrators={this.state.currentChapter.narrators}
+               <Map
+               	narrators={currentChapter.narrators}
+               	scale={scale}
+               	translation={translation}
                />
             </Col>
             <Col lg={3} md={6} className="Chapter">
@@ -192,7 +196,6 @@ class Chapter extends React.Component {
 }
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -224,12 +227,13 @@ class App extends Component {
   }
 
   render() {
+    const { error, isLoaded, items } = this.state;
     return (
       <Container fluid className="App">
             <Chapter
-              error={this.state.error}
-              isLoaded={this.state.isLoaded}
-              items={this.state.items}
+              error={error}
+              isLoaded={isLoaded}
+              items={items}
             />
       </Container>
     );
