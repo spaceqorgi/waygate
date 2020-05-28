@@ -5,11 +5,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { MapInteractionCSS } from 'react-map-interaction';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-class Canvas extends React.Component {
+function drawX(x, y, ctx) {
+    ctx.beginPath();
+
+    ctx.moveTo(x - 7.5, y - 7.5);
+    ctx.lineTo(x + 7.5, y + 7.5);
+
+    ctx.moveTo(x + 7.5, y - 7.5);
+    ctx.lineTo(x - 7.5, y + 7.5);
+    ctx.stroke();
+}
+
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      narrators: this.props.narrators
+      narrators: this.props.narrators,
+      x: this.props.x,
+      y: this.props.y,
     }
   }
 
@@ -46,19 +59,39 @@ class Canvas extends React.Component {
       console.log(narrators);
       for (const [id, narrator] of Object.entries(narrators)){
         // For each narrator, do
-        console.log("DEBUG: point id:" + id);
+        console.log("DEBUG: narrator id:" + id);
         ctx.strokeStyle = narrator.color;
-        for (const [p_id, point] of Object.entries(narrator.points)){
+        const pointLenght = Object.keys(narrator.points).length;
+	for (const [id_point, point] of Object.entries(narrator.points)){
           // For each point, do
-          console.log("DEBUG:  id:" + id);
-          if(p_id == "0"){
-            // Draw on the 1st point
-            ctx.moveTo(point.x, point.y);
+          console.log("DEBUG:  point id:" + id);
+          const x = point.x;
+          const y = point.y;
+          if(pointLenght === 1) {
+            // If there is only one point, draw rectangle
+            ctx.moveTo(x, y);
             ctx.beginPath();
-            ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+            ctx.rect(x - 5, y - 5, 10, 10);
+            ctx.stroke();
+          }
+          else if( parseInt(id_point) === pointLenght - 1) {
+            // Draw rectangle the final point
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            drawX(x, y, ctx);
+          }
+          else if(parseInt(id_point) === 0){
+            // Draw a circle on the first point
+            ctx.moveTo(x, y);
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, 2 * Math.PI);
+            ctx.moveTo(x, y);
+            ctx.stroke();
           }
           else {
-            ctx.lineTo(point.x, point.y);
+            // Draw a line on other points
+            ctx.lineTo(x, y);
+            ctx.stroke();
           }
           console.log(point);
         }
@@ -79,7 +112,7 @@ class Canvas extends React.Component {
           defaultScale={0.30}
           height="800px"
           width="100%"
-          defaultTranslation={{x: 0, y: 0}}
+          defaultTranslation={{x: -600, y: -600}}
       >
           <div>
             <canvas ref="canvas" width={height} height={width} />
@@ -107,7 +140,7 @@ class Chapter extends React.Component {
     const { scrollbars } = this.refs;
     const scrollHeight = scrollbars.getValues();
     console.log("DEBUG: Scroll height=" + scrollHeight);
-    scrollbars.scrollTop(50 * chapter.chapter_number);
+    scrollbars.scrollTop(45 * chapter.chapter_number);
   }
 
   render() {
@@ -120,13 +153,13 @@ class Chapter extends React.Component {
       return (
           <Row>
             <Col lg={9} md={12}>
-               <Canvas narrators={this.state.currentChapter.narrators}
+               <Map narrators={this.state.currentChapter.narrators}
                />
             </Col>
             <Col lg={3} md={6} className="Chapter">
             <Scrollbars
               ref="scrollbars"
-              style={{ width:500, height: 800}}
+              style={{ width:450, height: 800}}
             >
             <Accordion>
               {items.map(item => (
@@ -153,28 +186,6 @@ class Chapter extends React.Component {
             </Scrollbars>
             </Col>
           </Row>
-      )
-    }
-  }
-}
-
-class Book extends React.Component {
-
-  render() {
-    const { error, isLoaded, items } = this.props;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <ButtonGroup vertical>
-          {items.map(item => (
-            <Button key={item.book_number}>
-              {item.book_number} {item.book_name}
-            </Button>
-          ))}
-        </ButtonGroup>
       )
     }
   }
