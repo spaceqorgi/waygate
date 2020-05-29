@@ -41,6 +41,10 @@
   display: none;
 }
 
+.App {
+    padding: 0px;
+}
+
 .Map {
   width: 50%;
   height: auto;
