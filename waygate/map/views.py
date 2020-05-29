@@ -10,7 +10,7 @@ class IndexView(View):
     # TODO Remove this?
     message = "Welcome to the Wheel of Time interactive map"
 
-    def get(self):
+    def get(self, request):
         return HttpResponse(self.message)
 
 
