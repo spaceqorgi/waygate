@@ -1,14 +1,23 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 import {
-  Accordion, Card, Container, Row, Col,
-  Nav, Navbar, NavDropdown, Form, FormControl,
-  Button, InputGroup 
-} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { MapInteractionCSS } from 'react-map-interaction';
-import { Scrollbars } from 'react-custom-scrollbars';
-import PropTypes from 'prop-types';
+  Accordion,
+  Card,
+  Container,
+  Row,
+  Col,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  InputGroup,
+} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { MapInteractionCSS } from "react-map-interaction";
+import { Scrollbars } from "react-custom-scrollbars";
+import PropTypes from "prop-types";
 
 function drawX(x, y, ctx) {
   ctx.beginPath();
@@ -24,7 +33,7 @@ function drawX(x, y, ctx) {
 class Map extends React.Component {
   componentDidMount() {
     const { canvas } = this.refs;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const { img } = this.refs;
 
     img.onload = () => {
@@ -39,7 +48,7 @@ class Map extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     // Have to re-define canvas for some reason
     const { canvas } = this.refs;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const { img } = this.refs;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -51,7 +60,7 @@ class Map extends React.Component {
     // Draw on the map using canvas, point, and narrators
     const { narrators } = this.props;
     if (narrators !== {}) {
-      console.log('DEBUG: You select a chapter');
+      console.log("DEBUG: You select a chapter");
       for (const [id, narrator] of Object.entries(narrators)) {
         // For each narrator, do
         console.log(`DEBUG: narrator id:${id}`);
@@ -100,20 +109,18 @@ class Map extends React.Component {
       <MapInteractionCSS
         scale={scale}
         translation={translation}
-        onChange={({ scale, translation }) => this.setState({ scale, translation })}
+        onChange={({ scale, translation }) =>
+          this.setState({ scale, translation })
+        }
         height="800px"
         width="100%"
       >
         <div>
-          <canvas
-            ref="canvas"
-            width={height}
-            height={width}
-          />
+          <canvas ref="canvas" width={height} height={width} />
           <img
             ref="img"
             alt="map"
-            src={require('./images/map-big-clean.png')}
+            src={require("./images/map-big-clean.png")}
             className="hidden"
           />
         </div>
@@ -181,11 +188,7 @@ class Chapter extends React.Component {
           />
         </Col>
         <Col lg={3} md={6} className="Chapter">
-
-          <Scrollbars
-            ref="scrollbars"
-            style={{ width: 450, height: 800 }}
-          >
+          <Scrollbars ref="scrollbars" style={{ width: 450, height: 800 }}>
             <Accordion>
               {items.map((item) => (
                 <Card key={item.chapter_number}>
@@ -194,16 +197,9 @@ class Chapter extends React.Component {
                     eventKey={item.chapter_number}
                     onClick={() => this.onChapterSelected(item)}
                   >
-                    Ch.
-                    {' '}
-                    {item.chapter_number}
-                    :
-                    {' '}
-                    {item.chapter_name}
+                    Ch. {item.chapter_number}: {item.chapter_name}
                   </Accordion.Toggle>
-                  <Accordion.Collapse
-                    eventKey={item.chapter_number}
-                  >
+                  <Accordion.Collapse eventKey={item.chapter_number}>
                     <Card.Body>
                       <h1>{item.chapter_name}</h1>
                       <strong>{item.period}</strong>
@@ -235,7 +231,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const url = 'http://127.0.0.1:8000/api/chapter';
+    const url = "http://127.0.0.1:8000/api/chapter";
 
     fetch(url)
       .then((res) => res.json())
@@ -251,7 +247,7 @@ class App extends Component {
             isLoaded: true,
             error,
           });
-        },
+        }
       );
   }
 
@@ -264,7 +260,8 @@ class App extends Component {
           {error.message}
         </div>
       );
-    } if (!isLoaded) {
+    }
+    if (!isLoaded) {
       return <div>Loading...</div>;
     }
     return (
@@ -275,23 +272,31 @@ class App extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/api/chapter">Chapters</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/api/chapter">
+                Chapters
+              </Nav.Link>
               <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
               <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
               <NavDropdown title="Resources" id="basic-nav-dropdown">
-                <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">The Wheel of Time Wiki</NavDropdown.Item>
-                <NavDropdown.Item href="https://dragonmount.com/Books/index/">Dragonmount</NavDropdown.Item>
-                <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">Tar Valon Library</NavDropdown.Item>
+                <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
+                  The Wheel of Time Wiki
+                </NavDropdown.Item>
+                <NavDropdown.Item href="https://dragonmount.com/Books/index/">
+                  Dragonmount
+                </NavDropdown.Item>
+                <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
+                  Tar Valon Library
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">Buy ebooks</NavDropdown.Item>
+                <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
+                  Buy ebooks
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Button variant='link'>
-            	<a href='http://127.0.0.1:8000/admin'>
-		Admin
-		</a>
+            <Button variant="link">
+              <a href="http://127.0.0.1:8000/admin">Admin</a>
             </Button>
-            </Navbar.Collapse>
+          </Navbar.Collapse>
         </Navbar>
         <Chapter items={items} />
       </Container>
@@ -300,3 +305,4 @@ class App extends Component {
 }
 
 export default App;
+
