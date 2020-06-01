@@ -26,9 +26,9 @@ function NarratorList(props){
       {
         narrating_characters.map((character) => (
           <span
-          	key={character.id}
-          	>
-          	{character.display_name} &nbsp;
+            key={character.id}
+            >
+            {character.display_name} &nbsp;
           </span>
         ))
       }
@@ -106,16 +106,16 @@ class Map extends React.Component {
     const ctx = canvas.getContext("2d");
     const { img } = this.refs;
 
-		// setup image
-		ctx.globalAlpha = 1;
+    // setup image
+    ctx.globalAlpha = 1;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.drawImage(img, 0, 0);
     ctx.lineWidth = 5;
     ctx.stroke();
 
-		// Set opacity for points
-		ctx.globalAlpha = 0.8;
+    // Set opacity for points
+    ctx.globalAlpha = 0.8;
     // Draw on the map using canvas, point, and narrators
     const { narrators } = this.props;
     if (narrators !== {}) {
