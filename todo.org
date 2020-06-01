@@ -2,8 +2,13 @@
 ** TODO Make presentation
 
 [[file:~/waygate/README.org::*Resources][Resources]]
-** TODO Check out accordian
+** DONE Check out accordian
 
 [[file:~/waygate/README.org::*Resources][Resources]]
 ** DONE Find good JS/CSS/React image zoom library for map
 ** DONE Or, Make map-interaction zoom faster
+** TODO Calculate scale level base on Narrator positions
+** TODO Better way to calculate translation (x,y)
+** TODO Add button to adjust Scale level
+- Zoom in zoom olut
+- Reset to default zoom (See the whole map)
