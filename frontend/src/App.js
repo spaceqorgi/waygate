@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { MapInteractionCSS } from "react-map-interaction";
+import { Scrollbars } from "react-custom-scrollbars";
+import PropTypes from "prop-types";
 import {
   Accordion,
   Card,
@@ -14,10 +18,6 @@ import {
   Button,
   InputGroup,
 } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { MapInteractionCSS } from "react-map-interaction";
-import { Scrollbars } from "react-custom-scrollbars";
-import PropTypes from "prop-types";
 
 function NarratorList(props){
   const {narrating_characters} = props;
