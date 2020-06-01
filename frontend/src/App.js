@@ -19,6 +19,23 @@ import { MapInteractionCSS } from "react-map-interaction";
 import { Scrollbars } from "react-custom-scrollbars";
 import PropTypes from "prop-types";
 
+function NarratorList(props){
+  const {narrating_characters} = props;
+  return(
+    <div>
+      {
+        narrating_characters.map((character) => (
+          <span
+          	key={character.id}
+          	>
+          	{character.display_name}
+          </span>
+        ))
+      }
+    </div>
+  );
+}
+
 function MenuBar(props) {
         return(
         <Navbar bg="light" expand="lg">
@@ -172,23 +189,6 @@ Map.propTypes = {
   scale: PropTypes.number,
   translation: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
 };
-
-function NarratorList(props){
-  const {narrating_characters} = props;
-  return(
-    <div>
-      {
-        narrating_characters.map((character) => (
-          <span
-          	key={character.id}
-          	>
-          	{character.display_name}
-          </span>
-        ))
-      }
-    </div>
-  );
-}
 
 class Chapter extends React.Component {
   constructor(props) {
