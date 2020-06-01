@@ -17,7 +17,11 @@
 App	src/App.js	/^class App extends Component {$/;"	c
 Chapter	src/App.js	/^class Chapter extends React.Component {$/;"	c
 Map	src/App.js	/^class Map extends React.Component {$/;"	c
+MenuBar	src/App.js	/^function MenuBar(props) {$/;"	f
+NarratorList	src/App.js	/^class NarratorList extends React.Component {$/;"	c
 body	src/index.css	/^body {$/;"	s
+chapters	src/App.js	/^      chapters: [],$/;"	p	class:App.constructor.state
+characters	src/App.js	/^      characters: [],$/;"	p	class:App.constructor.state
 checkValidServiceWorker	src/serviceWorker.js	/^function checkValidServiceWorker(swUrl, config) {$/;"	f
 code	src/index.css	/^code {$/;"	s
 componentDidMount	src/App.js	/^  componentDidMount() {$/;"	m	class:App
@@ -26,12 +30,12 @@ componentDidUpdate	src/App.js	/^  componentDidUpdate(prevProps, prevState, snaps
 constructor	src/App.js	/^  constructor(props) {$/;"	m	class:App
 constructor	src/App.js	/^  constructor(props) {$/;"	m	class:Chapter
 currentChapter	src/App.js	/^      currentChapter: {},$/;"	p	class:Chapter.constructor.state
-drawX	src/App.js	/^function drawX(x, y, ctx) {$/;"	f
+drawX	src/App.js	/^  drawX(x, y, ctx) {$/;"	m	class:Map
 error	src/App.js	/^      error: null,$/;"	p	class:App.constructor.state
 isLoaded	src/App.js	/^      isLoaded: false,$/;"	p	class:App.constructor.state
 isLocalhost	src/serviceWorker.js	/^const isLocalhost = Boolean($/;"	C
-items	src/App.js	/^      items: [],$/;"	p	class:App.constructor.state
 items	src/App.js	/^  items: PropTypes.array,$/;"	p	class:Chapter.propTypes
+lookupCharacter	src/App.js	/^  lookupCharacter(chapter_id) {$/;"	m	class:Chapter
 narrators	src/App.js	/^  narrators: PropTypes.array,$/;"	p	class:Map.propTypes
 nsb0aa9e8b0101	src/logo.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 841.9 595.3">$/;"	n	uri:http://www.w3.org/2000/svg
 onChapterSelected	src/App.js	/^  onChapterSelected(chapter) {$/;"	m	class:Chapter
@@ -43,6 +47,7 @@ registerValidSW	src/serviceWorker.js	/^function registerValidSW(swUrl, config) {
 render	src/App.js	/^  render() {$/;"	m	class:App
 render	src/App.js	/^  render() {$/;"	m	class:Chapter
 render	src/App.js	/^  render() {$/;"	m	class:Map
+render	src/App.js	/^  render(){$/;"	m	class:NarratorList
 scale	src/App.js	/^      scale: 0.8,$/;"	p	class:Chapter.constructor.state
 scale	src/App.js	/^  scale: PropTypes.number,$/;"	p	class:Map.propTypes
 shouldComponentUpdate	src/App.js	/^  shouldComponentUpdate(nextProps) {$/;"	m	class:Map

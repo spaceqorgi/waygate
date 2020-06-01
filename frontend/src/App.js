@@ -19,18 +19,56 @@ import { MapInteractionCSS } from "react-map-interaction";
 import { Scrollbars } from "react-custom-scrollbars";
 import PropTypes from "prop-types";
 
-function drawX(x, y, ctx) {
-  ctx.beginPath();
-
-  ctx.moveTo(x - 7.5, y - 7.5);
-  ctx.lineTo(x + 7.5, y + 7.5);
-
-  ctx.moveTo(x + 7.5, y - 7.5);
-  ctx.lineTo(x - 7.5, y + 7.5);
-  ctx.stroke();
-}
+function MenuBar(props) {
+        return(
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="#home">Waygate</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/api/chapter">
+                Chapters
+              </Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
+              <NavDropdown title="Resources" id="basic-nav-dropdown">
+                <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
+                  The Wheel of Time Wiki
+                </NavDropdown.Item>
+                <NavDropdown.Item href="https://dragonmount.com/Books/index/">
+                  Dragonmount
+                </NavDropdown.Item>
+                <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
+                  Tar Valon Library
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
+                  Buy ebooks
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <Button variant="link">
+              <a href="http://127.0.0.1:8000/admin">Admin</a>
+            </Button>
+          </Navbar.Collapse>
+        </Navbar>
+        );
+        }
 
 class Map extends React.Component {
+
+  drawX(x, y, ctx) {
+    ctx.beginPath();
+
+    ctx.moveTo(x - 7.5, y - 7.5);
+    ctx.lineTo(x + 7.5, y + 7.5);
+
+    ctx.moveTo(x + 7.5, y - 7.5);
+    ctx.lineTo(x - 7.5, y + 7.5);
+    ctx.stroke();
+  }
+
   componentDidMount() {
     const { canvas } = this.refs;
     const ctx = canvas.getContext("2d");
@@ -81,7 +119,7 @@ class Map extends React.Component {
             // Draw rectangle the final point
             ctx.lineTo(x, y);
             ctx.stroke();
-            drawX(x, y, ctx);
+            this.drawX(x, y, ctx);
           } else if (parseInt(pointId) === 0) {
             // Draw a circle on the first point
             ctx.moveTo(x, y);
@@ -135,6 +173,23 @@ Map.propTypes = {
   translation: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
 };
 
+function NarratorList(props){
+  const {narrating_characters} = props;
+  return(
+    <div>
+      {
+        narrating_characters.map((character) => (
+          <span
+          	key={character.id}
+          	>
+          	{character.display_name}
+          </span>
+        ))
+      }
+    </div>
+  );
+}
+
 class Chapter extends React.Component {
   constructor(props) {
     super(props);
@@ -172,12 +227,28 @@ class Chapter extends React.Component {
     });
 
     const { scrollbars } = this.refs;
-    scrollbars.scrollTop(45 * chapter.chapter_number);
+    scrollbars.scrollTop(45 * chapter.id);
   }
+
+  lookupCharacter(chapter_id) {
+		const {characters} = this.props;
+    
+		// Filter only Character that appears in the currentChapter
+  	let matched_characters = characters.filter((character) => {
+      const narrators = Object.entries(character.narrators);
+    	for(const [narratorId, narrator] of narrators){
+				if(narrator.chapter === chapter_id)
+					return true;
+    	}
+			return false;
+  	})
+
+		return matched_characters;
+	}
 
   render() {
     const { currentChapter, scale, translation } = this.state;
-    const { items } = this.props;
+    const { chapters } = this.props;
     return (
       <Row>
         <Col lg={9} md={12}>
@@ -190,20 +261,21 @@ class Chapter extends React.Component {
         <Col lg={3} md={6} className="Chapter">
           <Scrollbars ref="scrollbars" style={{ width: 450, height: 800 }}>
             <Accordion>
-              {items.map((item) => (
-                <Card key={item.chapter_number}>
+              {chapters.map((chapter) => (
+                <Card key={chapter.chapter_number}>
                   <Accordion.Toggle
                     as={Card.Header}
-                    eventKey={item.chapter_number}
-                    onClick={() => this.onChapterSelected(item)}
+                    eventKey={chapter.chapter_number}
+                    onClick={() => this.onChapterSelected(chapter)}
                   >
-                    Ch. {item.chapter_number}: {item.chapter_name}
+                    Ch. {chapter.chapter_number}: {chapter.chapter_name}
                   </Accordion.Toggle>
-                  <Accordion.Collapse eventKey={item.chapter_number}>
+                  <Accordion.Collapse eventKey={chapter.chapter_number}>
                     <Card.Body>
-                      <h1>{item.chapter_name}</h1>
-                      <strong>{item.period}</strong>
-                      <p>{item.summary}</p>
+                      <h1>{chapter.chapter_name}</h1>
+                      <NarratorList narrating_characters={this.lookupCharacter(chapter.id)}/>
+                      <strong>{chapter.period}</strong>
+                      <p>{chapter.summary}</p>
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
@@ -226,20 +298,42 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: [],
+      chapters: [],
+      characters: [],
     };
   }
 
   componentDidMount() {
-    const url = "http://127.0.0.1:8000/api/chapter";
+    let url;
 
+    // Fetch chapters data
+    url = "http://127.0.0.1:8000/api/chapter";
     fetch(url)
       .then((res) => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result,
+            chapters: result,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+
+    // Fetch characters data
+    url = "http://127.0.0.1:8000/api/character";
+    fetch(url)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            characters: result,
           });
         },
         (error) => {
@@ -252,7 +346,7 @@ class App extends Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, chapters, characters } = this.state;
     if (error) {
       return (
         <div>
@@ -266,39 +360,8 @@ class App extends Component {
     }
     return (
       <Container fluid className="App">
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Waygate</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/api/chapter">
-                Chapters
-              </Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
-              <NavDropdown title="Resources" id="basic-nav-dropdown">
-                <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
-                  The Wheel of Time Wiki
-                </NavDropdown.Item>
-                <NavDropdown.Item href="https://dragonmount.com/Books/index/">
-                  Dragonmount
-                </NavDropdown.Item>
-                <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
-                  Tar Valon Library
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
-                  Buy ebooks
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Button variant="link">
-              <a href="http://127.0.0.1:8000/admin">Admin</a>
-            </Button>
-          </Navbar.Collapse>
-        </Navbar>
-        <Chapter items={items} />
+  <MenuBar />
+        <Chapter chapters={chapters} characters={characters}/>
       </Container>
     );
   }

@@ -33,7 +33,7 @@ class Narrator(models.Model):
     chapter = models.ForeignKey("Chapter",
                                 related_name='narrators',
                                 on_delete=models.CASCADE)
-    character = models.ForeignKey("Character", on_delete=models.CASCADE)
+    character = models.ForeignKey("Character", related_name='narrators', on_delete=models.CASCADE)
 
     def __str__(self):
         return "{} in Chapter {}: {}".format(self.character.__str__(),
