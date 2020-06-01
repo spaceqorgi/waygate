@@ -76,3 +76,5 @@ UPDATE map_chapter set id = DEFAULT;
 - AJAX and APIS - React https://reactjs.org/docs/faq-ajax.html
 - react-map-interaction https://github.com/transcriptic/react-map-interaction
 - react-custom-scrollbars https://github.com/malte-wessel/react-custom-scrollbars
+- styled-components https://styled-components.com/docs
+- icon https://styled-components.com/docs
