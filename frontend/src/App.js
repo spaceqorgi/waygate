@@ -28,7 +28,7 @@ function NarratorList(props){
           <span
           	key={character.id}
           	>
-          	{character.display_name}
+          	{character.display_name} &nbsp;
           </span>
         ))
       }
@@ -106,16 +106,19 @@ class Map extends React.Component {
     const ctx = canvas.getContext("2d");
     const { img } = this.refs;
 
+		// setup image
+		ctx.globalAlpha = 1;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.drawImage(img, 0, 0);
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 5;
     ctx.stroke();
 
+		// Set opacity for points
+		ctx.globalAlpha = 0.8;
     // Draw on the map using canvas, point, and narrators
     const { narrators } = this.props;
     if (narrators !== {}) {
-      console.log("DEBUG: You select a chapter");
       for (const [id, narrator] of Object.entries(narrators)) {
         // For each narrator, do
         console.log(`DEBUG: narrator id:${id}`);
@@ -151,7 +154,6 @@ class Map extends React.Component {
           }
           console.log(point);
         }
-        ctx.stroke();
       }
     }
   }
@@ -204,7 +206,7 @@ class Chapter extends React.Component {
   }
 
   onChapterSelected(chapter) {
-    const position = {
+    let position = {
       x: 0,
       y: 0,
     };
@@ -227,7 +229,7 @@ class Chapter extends React.Component {
     });
 
     const { scrollbars } = this.refs;
-    scrollbars.scrollTop(45 * chapter.id);
+    scrollbars.scrollTop(45 * chapter.chapter_number);
   }
 
   lookupCharacter(chapter_id) {
