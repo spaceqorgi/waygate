@@ -105,11 +105,14 @@ class Map extends React.Component {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.drawImage(img, 0, 0);
-    ctx.lineWidth = 5;
     ctx.stroke();
 
     // Set opacity for points
-    ctx.globalAlpha = 0.7;
+    ctx.lineWidth = 5;
+
+    ctx.globalAlpha = 0.8;
+    ctx.lineCap = "round";
+
     // Draw on the map using canvas, point, and narrators
     const { narrators } = this.props;
     if (narrators !== {}) {
@@ -127,7 +130,7 @@ class Map extends React.Component {
             // If there is only one point, draw rectangle
             ctx.moveTo(x, y);
             ctx.beginPath();
-            ctx.rect(x - 5, y - 5, 12, 12);
+            ctx.rect(x - 7, y - 7, 14, 14);
             ctx.stroke();
           } else if (parseInt(pointId) === pointLenght - 1) {
             // Draw rectangle the final point
