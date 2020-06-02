@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { MapInteractionCSS } from "react-map-interaction";
 import { Scrollbars } from "react-custom-scrollbars";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import {
   Accordion,
   Card,
@@ -13,10 +14,8 @@ import {
   Nav,
   Navbar,
   NavDropdown,
-  Form,
-  FormControl,
   Button,
-  InputGroup,
+  Badge,
 } from "react-bootstrap";
 
 function NarratorList(props){
@@ -25,11 +24,9 @@ function NarratorList(props){
     <div>
       {
         narrating_characters.map((character) => (
-          <span
-            key={character.id}
-            >
-            {character.display_name} &nbsp;
-          </span>
+          <Badge variant="primary" key={character.id} >
+            {character.display_name}
+          </Badge>
         ))
       }
     </div>
@@ -38,8 +35,8 @@ function NarratorList(props){
 
 function MenuBar(props) {
         return(
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Waygate</Navbar.Brand>
+        <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
+          <Navbar.Brand href="#home">Waygate - The Wheel of Time Interactive Map</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -61,12 +58,12 @@ function MenuBar(props) {
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
-                  Buy ebooks
+                  Buy The Wheel of Time E-books
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Button variant="link">
-              <a href="http://127.0.0.1:8000/admin">Admin</a>
+            <Button href="http://127.0.0.1:8000/admin" variant="warning">
+            	Admin
             </Button>
           </Navbar.Collapse>
         </Navbar>
@@ -78,11 +75,11 @@ class Map extends React.Component {
   drawX(x, y, ctx) {
     ctx.beginPath();
 
-    ctx.moveTo(x - 7.5, y - 7.5);
-    ctx.lineTo(x + 7.5, y + 7.5);
+    ctx.moveTo(x - 9.5, y - 9.5);
+    ctx.lineTo(x + 9.5, y + 9.5);
 
-    ctx.moveTo(x + 7.5, y - 7.5);
-    ctx.lineTo(x - 7.5, y + 7.5);
+    ctx.moveTo(x + 9.5, y - 9.5);
+    ctx.lineTo(x - 9.5, y + 9.5);
     ctx.stroke();
   }
 
@@ -115,7 +112,7 @@ class Map extends React.Component {
     ctx.stroke();
 
     // Set opacity for points
-    ctx.globalAlpha = 0.8;
+    ctx.globalAlpha = 0.7;
     // Draw on the map using canvas, point, and narrators
     const { narrators } = this.props;
     if (narrators !== {}) {
@@ -133,7 +130,7 @@ class Map extends React.Component {
             // If there is only one point, draw rectangle
             ctx.moveTo(x, y);
             ctx.beginPath();
-            ctx.rect(x - 5, y - 5, 10, 10);
+            ctx.rect(x - 5, y - 5, 12, 12);
             ctx.stroke();
           } else if (parseInt(pointId) === pointLenght - 1) {
             // Draw rectangle the final point
@@ -144,7 +141,7 @@ class Map extends React.Component {
             // Draw a circle on the first point
             ctx.moveTo(x, y);
             ctx.beginPath();
-            ctx.arc(x, y, 5, 0, 2 * Math.PI);
+            ctx.arc(x, y, 8, 0, 2 * Math.PI);
             ctx.moveTo(x, y);
             ctx.stroke();
           } else {
@@ -169,8 +166,6 @@ class Map extends React.Component {
         onChange={({ scale, translation }) =>
           this.setState({ scale, translation })
         }
-        height="800px"
-        width="100%"
       >
         <div>
           <canvas ref="canvas" width={height} height={width} />
@@ -197,10 +192,10 @@ class Chapter extends React.Component {
     super(props);
     this.state = {
       currentChapter: {},
-      scale: 0.8,
+      scale: 0.35,
       translation: {
-        x: -500,
-        y: -500,
+        x: 15,
+        y: 15,
       },
     };
   }
@@ -210,21 +205,22 @@ class Chapter extends React.Component {
       x: 0,
       y: 0,
     };
-    for (const [narratorId, narrator] of Object.entries(chapter.narrators)) {
+    const narrators = Object.values(chapter.narrators);
+    for (const narrator of narrators) {
       // TODO Make this works with multiple narrators
-      const points = Object.entries(narrator.points);
-      for (const [pointId, point] of points) {
+      const points = Object.values(narrator.points);
+      for (const point of points) {
         position.x += point.x;
         position.y += point.y;
       }
-      position.x = Math.round(-(position.x / points.length) / 2.5);
-      position.y = Math.round(-(position.y / points.length) / 2.5);
+      position.x = Math.round(-(position.x / points.length) / 3.0);
+      position.y = Math.round(-(position.y / points.length) / 3.0);
       break;
     }
 
     this.setState({
       currentChapter: chapter,
-      scale: 0.8,
+      scale: 0.80,
       translation: position,
     });
 
@@ -233,20 +229,20 @@ class Chapter extends React.Component {
   }
 
   lookupCharacter(chapter_id) {
-		const {characters} = this.props;
+    const {characters} = this.props;
     
-		// Filter only Character that appears in the currentChapter
-  	let matched_characters = characters.filter((character) => {
-      const narrators = Object.entries(character.narrators);
-    	for(const [narratorId, narrator] of narrators){
-				if(narrator.chapter === chapter_id)
-					return true;
-    	}
-			return false;
-  	})
+    // Filter only Character that appears in the currentChapter
+    let matched_characters = characters.filter((character) => {
+      const narrators = Object.values(character.narrators);
+      for(const narrator of narrators){
+        if(narrator.chapter === chapter_id)
+          return true;
+      }
+      return false;
+    })
 
-		return matched_characters;
-	}
+    return matched_characters;
+  }
 
   render() {
     const { currentChapter, scale, translation } = this.state;
@@ -254,29 +250,42 @@ class Chapter extends React.Component {
     return (
       <Row>
         <Col lg={9} md={12}>
+        <div className="waygate-map-container">
           <Map
             narrators={currentChapter.narrators}
             scale={scale}
             translation={translation}
           />
+        </div>
         </Col>
-        <Col lg={3} md={6} className="Chapter">
-          <Scrollbars ref="scrollbars" style={{ width: 450, height: 800 }}>
+        <Col lg={3} md={12}>
+          <Scrollbars ref="scrollbars" className="waygate-scrollbars">
             <Accordion>
               {chapters.map((chapter) => (
-                <Card key={chapter.chapter_number}>
+                <Card
+                  key={chapter.chapter_number} >
                   <Accordion.Toggle
                     as={Card.Header}
                     eventKey={chapter.chapter_number}
                     onClick={() => this.onChapterSelected(chapter)}
+                    className="waygate-chapter-header"
                   >
-                    Ch. {chapter.chapter_number}: {chapter.chapter_name}
+                    <h5>
+                      <Badge variant="dark">Chapter {chapter.chapter_number}</Badge>
+                      &nbsp;
+                      {chapter.chapter_name}
+                    </h5>
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey={chapter.chapter_number}>
-                    <Card.Body>
-                      <h1>{chapter.chapter_name}</h1>
-                      <NarratorList narrating_characters={this.lookupCharacter(chapter.id)}/>
-                      <strong>{chapter.period}</strong>
+                    <Card.Body
+                      className="waygate-chapter-body"
+                    >
+                    	<h4>
+                    		{chapter.chapter_name}
+                    	</h4>
+                      <Badge variant="info">{chapter.period}</Badge>
+                    	<NarratorList
+                      	narrating_characters={this.lookupCharacter(chapter.id)}/>
                       <p>{chapter.summary}</p>
                     </Card.Body>
                   </Accordion.Collapse>
@@ -361,10 +370,12 @@ class App extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <Container fluid className="App">
-  <MenuBar />
-        <Chapter chapters={chapters} characters={characters}/>
-      </Container>
+    	<div className="App">
+        <MenuBar />
+        <Container fluid className="waygate-app-container">
+          <Chapter chapters={chapters} characters={characters}/>
+        </Container>
+      </div>
     );
   }
 }

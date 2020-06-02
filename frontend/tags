@@ -12,13 +12,14 @@
 .App-link	src/App.css	/^.App-link {$/;"	c
 .App-logo	src/App.css	/^  .App-logo {$/;"	c
 .App-logo	src/App.css	/^.App-logo {$/;"	c
-.Map	src/App.css	/^.Map {$/;"	c
 .hidden	src/App.css	/^.hidden {$/;"	c
 App	src/App.js	/^class App extends Component {$/;"	c
+Capa_1	src/logo.svg	/^	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">$/;"	i
 Chapter	src/App.js	/^class Chapter extends React.Component {$/;"	c
 Map	src/App.js	/^class Map extends React.Component {$/;"	c
 MenuBar	src/App.js	/^function MenuBar(props) {$/;"	f
-NarratorList	src/App.js	/^class NarratorList extends React.Component {$/;"	c
+NarratorList	src/App.js	/^function NarratorList(props){$/;"	f
+NarratorName	src/App.js	/^const NarratorName = styled.button`$/;"	C
 body	src/index.css	/^body {$/;"	s
 chapters	src/App.js	/^      chapters: [],$/;"	p	class:App.constructor.state
 characters	src/App.js	/^      characters: [],$/;"	p	class:App.constructor.state
@@ -37,9 +38,9 @@ isLocalhost	src/serviceWorker.js	/^const isLocalhost = Boolean($/;"	C
 items	src/App.js	/^  items: PropTypes.array,$/;"	p	class:Chapter.propTypes
 lookupCharacter	src/App.js	/^  lookupCharacter(chapter_id) {$/;"	m	class:Chapter
 narrators	src/App.js	/^  narrators: PropTypes.array,$/;"	p	class:Map.propTypes
-nsb0aa9e8b0101	src/logo.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 841.9 595.3">$/;"	n	uri:http://www.w3.org/2000/svg
+nsb0aa9e8b0101	src/logo.svg	/^	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">$/;"	n	uri:http://www.w3.org/2000/svg
 onChapterSelected	src/App.js	/^  onChapterSelected(chapter) {$/;"	m	class:Chapter
-position	src/App.js	/^    const position = {$/;"	c	class:Chapter.onChapterSelected
+position	src/App.js	/^    let position = {$/;"	c	class:Chapter.onChapterSelected
 propTypes	src/App.js	/^Chapter.propTypes = {$/;"	c	class:Chapter
 propTypes	src/App.js	/^Map.propTypes = {$/;"	c	class:Map
 register	src/serviceWorker.js	/^export function register(config) {$/;"	f
@@ -47,8 +48,7 @@ registerValidSW	src/serviceWorker.js	/^function registerValidSW(swUrl, config) {
 render	src/App.js	/^  render() {$/;"	m	class:App
 render	src/App.js	/^  render() {$/;"	m	class:Chapter
 render	src/App.js	/^  render() {$/;"	m	class:Map
-render	src/App.js	/^  render(){$/;"	m	class:NarratorList
-scale	src/App.js	/^      scale: 0.8,$/;"	p	class:Chapter.constructor.state
+scale	src/App.js	/^      scale: 0.35,$/;"	p	class:Chapter.constructor.state
 scale	src/App.js	/^  scale: PropTypes.number,$/;"	p	class:Map.propTypes
 shouldComponentUpdate	src/App.js	/^  shouldComponentUpdate(nextProps) {$/;"	m	class:Map
 state	src/App.js	/^    this.state = {$/;"	c	class:App.constructor
@@ -56,7 +56,8 @@ state	src/App.js	/^    this.state = {$/;"	c	class:Chapter.constructor
 translation	src/App.js	/^      translation: {$/;"	c	class:Chapter.constructor.state
 translation	src/App.js	/^  translation: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),$/;"	p	class:Map.propTypes
 unregister	src/serviceWorker.js	/^export function unregister() {$/;"	f
-x	src/App.js	/^        x: -500,$/;"	p	class:Chapter.constructor.state.translation
+x	src/App.js	/^        x: 0,$/;"	p	class:Chapter.constructor.state.translation
 x	src/App.js	/^      x: 0,$/;"	p	class:Chapter.onChapterSelected.position
-y	src/App.js	/^        y: -500,$/;"	p	class:Chapter.constructor.state.translation
+xlink	src/logo.svg	/^	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">$/;"	n	uri:http://www.w3.org/1999/xlink
+y	src/App.js	/^        y: 0,$/;"	p	class:Chapter.constructor.state.translation
 y	src/App.js	/^      y: 0,$/;"	p	class:Chapter.onChapterSelected.position

@@ -14,3 +14,6 @@
 - Reset to default zoom (See the whole map)
 ** TODO Separate components into modules
 ** TODO Refactor for cleaner code
+** TODO Better admin panel [/]
+	- [  ] Style
+	- [  ] Table
