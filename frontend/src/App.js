@@ -18,60 +18,57 @@ import {
   Badge,
 } from "react-bootstrap";
 
-function NarratorList(props){
-  const {narrating_characters} = props;
-  return(
+function NarratorList(props) {
+  const { narrating_characters } = props;
+  return (
     <div>
-      {
-        narrating_characters.map((character) => (
-          <Badge variant="primary" key={character.id} >
-            {character.display_name}
-          </Badge>
-        ))
-      }
+      {narrating_characters.map((character) => (
+        <Badge variant="primary" key={character.id}>
+          {character.display_name}
+        </Badge>
+      ))}
     </div>
   );
 }
 
 function MenuBar(props) {
-        return(
-        <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
-          <Navbar.Brand href="#home">Waygate - The Wheel of Time Interactive Map</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/api/chapter">
-                Chapters
-              </Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
-              <NavDropdown title="Resources" id="basic-nav-dropdown">
-                <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
-                  The Wheel of Time Wiki
-                </NavDropdown.Item>
-                <NavDropdown.Item href="https://dragonmount.com/Books/index/">
-                  Dragonmount
-                </NavDropdown.Item>
-                <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
-                  Tar Valon Library
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
-                  Buy The Wheel of Time E-books
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Button href="http://127.0.0.1:8000/admin" variant="warning">
-            	Admin
-            </Button>
-          </Navbar.Collapse>
-        </Navbar>
-        );
-        }
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
+      <Navbar.Brand href="#home">
+        Waygate - The Wheel of Time Interactive Map
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
+          <Nav.Link href="http://127.0.0.1:8000/api/chapter">Chapters</Nav.Link>
+          <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
+          <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
+          <NavDropdown title="Resources" id="basic-nav-dropdown">
+            <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
+              The Wheel of Time Wiki
+            </NavDropdown.Item>
+            <NavDropdown.Item href="https://dragonmount.com/Books/index/">
+              Dragonmount
+            </NavDropdown.Item>
+            <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
+              Tar Valon Library
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
+              Buy The Wheel of Time E-books
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        <Button href="http://127.0.0.1:8000/admin" variant="warning">
+          Admin
+        </Button>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+}
 
 class Map extends React.Component {
-
   drawX(x, y, ctx) {
     ctx.beginPath();
 
@@ -220,7 +217,7 @@ class Chapter extends React.Component {
 
     this.setState({
       currentChapter: chapter,
-      scale: 0.80,
+      scale: 0.8,
       translation: position,
     });
 
@@ -229,17 +226,16 @@ class Chapter extends React.Component {
   }
 
   lookupCharacter(chapter_id) {
-    const {characters} = this.props;
-    
+    const { characters } = this.props;
+
     // Filter only Character that appears in the currentChapter
     let matched_characters = characters.filter((character) => {
       const narrators = Object.values(character.narrators);
-      for(const narrator of narrators){
-        if(narrator.chapter === chapter_id)
-          return true;
+      for (const narrator of narrators) {
+        if (narrator.chapter === chapter_id) return true;
       }
       return false;
-    })
+    });
 
     return matched_characters;
   }
@@ -250,20 +246,19 @@ class Chapter extends React.Component {
     return (
       <Row>
         <Col lg={9} md={12}>
-        <div className="waygate-map-container">
-          <Map
-            narrators={currentChapter.narrators}
-            scale={scale}
-            translation={translation}
-          />
-        </div>
+          <div className="waygate-map-container">
+            <Map
+              narrators={currentChapter.narrators}
+              scale={scale}
+              translation={translation}
+            />
+          </div>
         </Col>
         <Col lg={3} md={12}>
           <Scrollbars ref="scrollbars" className="waygate-scrollbars">
             <Accordion>
               {chapters.map((chapter) => (
-                <Card
-                  key={chapter.chapter_number} >
+                <Card key={chapter.chapter_number}>
                   <Accordion.Toggle
                     as={Card.Header}
                     eventKey={chapter.chapter_number}
@@ -271,21 +266,20 @@ class Chapter extends React.Component {
                     className="waygate-chapter-header"
                   >
                     <h5>
-                      <Badge variant="dark">Chapter {chapter.chapter_number}</Badge>
+                      <Badge variant="dark">
+                        Chapter {chapter.chapter_number}
+                      </Badge>
                       &nbsp;
                       {chapter.chapter_name}
                     </h5>
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey={chapter.chapter_number}>
-                    <Card.Body
-                      className="waygate-chapter-body"
-                    >
-                    	<h4>
-                    		{chapter.chapter_name}
-                    	</h4>
+                    <Card.Body className="waygate-chapter-body">
+                      <h4>{chapter.chapter_name}</h4>
                       <Badge variant="info">{chapter.period}</Badge>
-                    	<NarratorList
-                      	narrating_characters={this.lookupCharacter(chapter.id)}/>
+                      <NarratorList
+                        narrating_characters={this.lookupCharacter(chapter.id)}
+                      />
                       <p>{chapter.summary}</p>
                     </Card.Body>
                   </Accordion.Collapse>
@@ -370,10 +364,10 @@ class App extends Component {
       return <div>Loading...</div>;
     }
     return (
-    	<div className="App">
+      <div className="App">
         <MenuBar />
         <Container fluid className="waygate-app-container">
-          <Chapter chapters={chapters} characters={characters}/>
+          <Chapter chapters={chapters} characters={characters} />
         </Container>
       </div>
     );
@@ -381,4 +375,3 @@ class App extends Component {
 }
 
 export default App;
-
