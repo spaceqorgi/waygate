@@ -8,18 +8,16 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/0c78c0c4/
 .App	src/App.css	/^.App {$/;"	c
-.App-header	src/App.css	/^.App-header {$/;"	c
-.App-link	src/App.css	/^.App-link {$/;"	c
-.App-logo	src/App.css	/^  .App-logo {$/;"	c
-.App-logo	src/App.css	/^.App-logo {$/;"	c
+.badge	src/App.css	/^.badge {$/;"	c
 .hidden	src/App.css	/^.hidden {$/;"	c
+.waygate-map-container	src/App.css	/^.waygate-map-container {$/;"	c
+.waygate-scrollbars	src/App.css	/^.waygate-scrollbars {$/;"	c
 App	src/App.js	/^class App extends Component {$/;"	c
 Capa_1	src/logo.svg	/^	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">$/;"	i
 Chapter	src/App.js	/^class Chapter extends React.Component {$/;"	c
 Map	src/App.js	/^class Map extends React.Component {$/;"	c
 MenuBar	src/App.js	/^function MenuBar(props) {$/;"	f
-NarratorList	src/App.js	/^function NarratorList(props){$/;"	f
-NarratorName	src/App.js	/^const NarratorName = styled.button`$/;"	C
+NarratorList	src/App.js	/^function NarratorList(props) {$/;"	f
 body	src/index.css	/^body {$/;"	s
 chapters	src/App.js	/^      chapters: [],$/;"	p	class:App.constructor.state
 characters	src/App.js	/^      characters: [],$/;"	p	class:App.constructor.state
@@ -31,6 +29,59 @@ componentDidUpdate	src/App.js	/^  componentDidUpdate(prevProps, prevState, snaps
 constructor	src/App.js	/^  constructor(props) {$/;"	m	class:App
 constructor	src/App.js	/^  constructor(props) {$/;"	m	class:Chapter
 currentChapter	src/App.js	/^      currentChapter: {},$/;"	p	class:Chapter.constructor.state
+div.col-lg-1	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-10	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-11	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-12	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-2	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-3	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-4	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-5	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-6	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-7	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-8	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-lg-9	src/App.css	/^div.col-lg-1,div.col-lg-10,div.col-lg-11,div.col-lg-12,div.col-lg-2,div.col-lg-3,div.col-lg-4,di/;"	c
+div.col-md-1	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-10	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-11	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-12	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-2	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-3	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-4	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-5	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-6	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-7	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-8	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-md-9	src/App.css	/^div.col-md-1,div.col-md-10,div.col-md-11,div.col-md-12,div.col-md-2,div.col-md-3,div.col-md-4,di/;"	c
+div.col-sm-1	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-10	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-11	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-12	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-2	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-3	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-4	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-5	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-6	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-7	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-8	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-sm-9	src/App.css	/^div.col-sm-1,div.col-sm-10,div.col-sm-11,div.col-sm-12,div.col-sm-2,div.col-sm-3,div.col-sm-4,di/;"	c
+div.col-xs-1	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-10	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-11	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-12	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-2	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-3	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-4	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-5	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-6	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-7	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-8	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.col-xs-9	src/App.css	/^div.col-xs-1,div.col-xs-10,div.col-xs-11,div.col-xs-12,div.col-xs-2,div.col-xs-3,div.col-xs-4,di/;"	c
+div.row	src/App.css	/^div.row {$/;"	c
+div.waygate-app-container	src/App.css	/^div.waygate-app-container {$/;"	c
+div.waygate-chapter-body	src/App.css	/^div.waygate-chapter-body {$/;"	c
+div.waygate-chapter-header	src/App.css	/^div.waygate-chapter-header {$/;"	c
+div.waygate-chapter-header:hover	src/App.css	/^div.waygate-chapter-header:hover {$/;"	c
 drawX	src/App.js	/^  drawX(x, y, ctx) {$/;"	m	class:Map
 error	src/App.js	/^      error: null,$/;"	p	class:App.constructor.state
 isLoaded	src/App.js	/^      isLoaded: false,$/;"	p	class:App.constructor.state
@@ -48,6 +99,7 @@ registerValidSW	src/serviceWorker.js	/^function registerValidSW(swUrl, config) {
 render	src/App.js	/^  render() {$/;"	m	class:App
 render	src/App.js	/^  render() {$/;"	m	class:Chapter
 render	src/App.js	/^  render() {$/;"	m	class:Map
+s.waygate-navbar	src/App.css	/^s.waygate-navbar {$/;"	c
 scale	src/App.js	/^      scale: 0.35,$/;"	p	class:Chapter.constructor.state
 scale	src/App.js	/^  scale: PropTypes.number,$/;"	p	class:Map.propTypes
 shouldComponentUpdate	src/App.js	/^  shouldComponentUpdate(nextProps) {$/;"	m	class:Map
@@ -56,8 +108,8 @@ state	src/App.js	/^    this.state = {$/;"	c	class:Chapter.constructor
 translation	src/App.js	/^      translation: {$/;"	c	class:Chapter.constructor.state
 translation	src/App.js	/^  translation: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),$/;"	p	class:Map.propTypes
 unregister	src/serviceWorker.js	/^export function unregister() {$/;"	f
-x	src/App.js	/^        x: 0,$/;"	p	class:Chapter.constructor.state.translation
+x	src/App.js	/^        x: 15,$/;"	p	class:Chapter.constructor.state.translation
 x	src/App.js	/^      x: 0,$/;"	p	class:Chapter.onChapterSelected.position
 xlink	src/logo.svg	/^	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">$/;"	n	uri:http://www.w3.org/1999/xlink
-y	src/App.js	/^        y: 0,$/;"	p	class:Chapter.constructor.state.translation
+y	src/App.js	/^        y: 15,$/;"	p	class:Chapter.constructor.state.translation
 y	src/App.js	/^      y: 0,$/;"	p	class:Chapter.onChapterSelected.position
