@@ -25,9 +25,12 @@ function NarratorList(props) {
   return (
     <div>
       {narratingCharacters.map((character) => (
-        <Badge style={{background: character.color, color: character.use_white_text ? 'white' : 'black'}}  key={character.id}>
-          {character.display_name}
-        </Badge>
+        <span>
+          <Badge style={{background: character.color, color: character.use_white_text ? 'white' : 'black'}}  key={character.id}>
+            {character.display_name}
+          </Badge>
+          &nbsp;
+        </span>
       ))}
     </div>
   );
