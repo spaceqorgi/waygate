@@ -200,7 +200,7 @@ Map.propTypes = {
   translation: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
 };
 
-class Chapter extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -329,7 +329,7 @@ class Chapter extends React.Component {
   }
 }
 
-Chapter.propTypes = {
+Main.propTypes = {
   chapters: PropTypes.array,
 };
 
@@ -339,6 +339,23 @@ class Book extends React.Component {
     this.state = {
       currentBook: {}
     }
+  }
+
+  render() {
+    const { books } = this.props;
+    return (
+      <div class="book-container">
+        <Form>
+          <Form.Control as="select">
+            {books.map((book) => (
+              <option key={book.book_number} value={book.book_number}>
+                {book.book_name}
+              </option>
+            ))}
+          </Form.Control>
+        </Form>
+      </div>
+    );
   }
 }
 
@@ -419,7 +436,7 @@ class App extends Component {
       <div className="App">
         <MenuBar />
         <Container fluid className="waygate-app-container">
-          <Chapter chapters={chapters} characters={characters} />
+          <Main books={books} chapters={chapters} characters={characters} />
         </Container>
       </div>
     );
