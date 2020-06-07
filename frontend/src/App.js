@@ -325,8 +325,21 @@ class Chapter extends React.Component {
 }
 
 Chapter.propTypes = {
-  items: PropTypes.array,
+  chapters: PropTypes.array,
 };
+
+class Book extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentBook: {}
+    }
+  }
+}
+
+Book.propTypes = {
+  books: PropTypes.array,
+}
 
 class App extends Component {
   // base component is used to fetch api data
@@ -335,7 +348,7 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      chapters: [],
+      books: [],
       characters: [],
     };
   }
@@ -343,15 +356,15 @@ class App extends Component {
   componentDidMount() {
     let url;
 
-    // Fetch chapters data
-    url = "http://127.0.0.1:8000/api/chapter";
+    // Fetch books data
+    url = "http://127.0.0.1:8000/api/book";
     fetch(url)
       .then((res) => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            chapters: result,
+            books: result,
           });
         },
         (error) => {
@@ -383,7 +396,7 @@ class App extends Component {
   }
 
   render() {
-    const { error, isLoaded, chapters, characters } = this.state;
+    const { error, isLoaded, books, characters } = this.state;
     if (error) {
       return (
         <div>
@@ -395,6 +408,8 @@ class App extends Component {
     if (!isLoaded) {
       return <div>Loading...</div>;
     }
+    // TODO For testing-purpose extract only Chapters from Book 1
+    const chapters = books.filter((book) => (book.book_number === 1))[0].chapters;
     return (
       <div className="App">
         <MenuBar />
