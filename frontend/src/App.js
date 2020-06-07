@@ -16,6 +16,8 @@ import {
   Button,
   Badge,
   Spinner,
+  Dropdown,
+  DropdownButton
 } from "react-bootstrap";
 
 function NarratorList(props) {
@@ -33,43 +35,6 @@ function NarratorList(props) {
         </span>
       ))}
     </div>
-  );
-}
-
-function MenuBar(props) {
-  return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
-      <Navbar.Brand href="#home">
-        Waygate - The Wheel of Time Interactive Map
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
-          <Nav.Link href="http://127.0.0.1:8000/api/chapter">Chapters</Nav.Link>
-          <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
-          <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
-          <NavDropdown title="Resources" id="basic-nav-dropdown">
-            <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
-              The Wheel of Time Wiki
-            </NavDropdown.Item>
-            <NavDropdown.Item href="https://dragonmount.com/Books/index/">
-              Dragonmount
-            </NavDropdown.Item>
-            <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
-              Tar Valon Library
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
-              Buy The Wheel of Time E-books
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-        <Button href="http://127.0.0.1:8000/admin" variant="warning">
-          Admin
-        </Button>
-      </Navbar.Collapse>
-    </Navbar>
   );
 }
 
@@ -204,6 +169,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentBook: {},
+      chapters: [],
       currentChapter: {},
       scale: 0.35,
       translation: {
@@ -233,6 +200,21 @@ class Main extends React.Component {
     return matchedCharacters;
   }
 
+  onBookSelected(book_number = 1) {
+    // onBookSelected, set this.state.currentBook to selection value
+    // ChapterList will be updated via props change
+    //
+    console.log(book_number);
+    const { books } = this.props;
+    const currentBook = books.filter((book) => (book.book_number === parseInt(book_number)))[0];
+    console.log("DEBUG: currentBook")
+    console.log(currentBook)
+
+    this.setState({
+      currentBook: currentBook,
+      chapters: currentBook.chapters
+    })
+  }
 
   onChapterSelected(chapter) {
     // onChapterSelected, translation and scale are calculated
@@ -277,54 +259,99 @@ class Main extends React.Component {
   }
 
   render() {
-    const { currentChapter, scale, translation, narratingCharacters } = this.state;
-    const { chapters } = this.props;
+    const { books } = this.props;
+    const { chapters, currentBook, currentChapter, scale, translation, narratingCharacters } = this.state;
+
     return (
-      <Row>
-        <Col lg={9} md={12}>
-          <div className="waygate-map-container">
-            <Map
-              narrators={currentChapter.narrators}
-              scale={scale}
-              translation={translation}
-              narratingCharacters={narratingCharacters}
-            />
-          </div>
-        </Col>
-        <Col lg={3} md={12}>
-          <Scrollbars ref="scrollbars" className="waygate-scrollbars">
-            <Accordion>
-              {chapters.map((chapter) => (
-                <Card key={chapter.chapter_number}>
-                  <Accordion.Toggle
-                    as={Card.Header}
-                    eventKey={chapter.chapter_number}
-                    onClick={() => this.onChapterSelected(chapter)}
-                    className="waygate-chapter-header">
-                    <h5>
-                      <Badge variant="dark">
-                        Chapter {chapter.chapter_number}
-                      </Badge>
-                      &nbsp;
-                      {chapter.chapter_name}
-                    </h5>
-                  </Accordion.Toggle>
-                  <Accordion.Collapse eventKey={chapter.chapter_number}>
-                    <Card.Body className="waygate-chapter-body">
-                      <h4>{chapter.chapter_name}</h4>
-                      <Badge variant="info">{chapter.period}</Badge>
-                      <NarratorList
-                        narratingCharacters={this.lookupCharacter(chapter.id)}
-                      />
-                      <p>{chapter.summary}</p>
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              ))}
-            </Accordion>
-          </Scrollbars>
-        </Col>
-      </Row>
+      <div>
+        <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
+          <Navbar.Brand href="#home">
+            Waygate - The Wheel of Time Interactive Map
+            </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/api/chapter">Chapters</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
+              <NavDropdown title="Resources" id="basic-nav-dropdown">
+                <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
+                  The Wheel of Time Wiki
+                  </NavDropdown.Item>
+                <NavDropdown.Item href="https://dragonmount.com/Books/index/">
+                  Dragonmount
+                  </NavDropdown.Item>
+                <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
+                  Tar Valon Library
+                  </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
+                  Buy The Wheel of Time E-books
+                  </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown
+                title={currentBook.book_name ? currentBook.book_name : "Select book"}
+                id="dropdown-select-book"
+                onSelect={(e) => this.onBookSelected(e)}>
+                {books.map((book) => (
+                  <NavDropdown.Item eventKey={book.book_number} >
+                    {book.book_name}
+                  </NavDropdown.Item>
+                ))}
+              </NavDropdown>
+            </Nav>
+            <Button href="http://127.0.0.1:8000/admin" variant="warning">
+              Admin
+            </Button>
+          </Navbar.Collapse>
+        </Navbar>
+        <Row>
+          <Col lg={9} md={12}>
+            <div className="waygate-map-container">
+              <Map
+                narrators={currentChapter.narrators}
+                scale={scale}
+                translation={translation}
+                narratingCharacters={narratingCharacters}
+              />
+            </div>
+          </Col>
+          <Col lg={3} md={12}>
+            <Scrollbars ref="scrollbars" className="waygate-scrollbars">
+              <Accordion>
+                {chapters.map((chapter) => (
+                  <Card key={chapter.chapter_number}>
+                    <Accordion.Toggle
+                      as={Card.Header}
+                      eventKey={chapter.chapter_number}
+                      onClick={() => this.onChapterSelected(chapter)}
+                      className="waygate-chapter-header">
+                      <h5>
+                        <Badge variant="dark">
+                          Chapter {chapter.chapter_number}
+                        </Badge>
+                        &nbsp;
+                    {chapter.chapter_name}
+                      </h5>
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey={chapter.chapter_number}>
+                      <Card.Body className="waygate-chapter-body">
+                        <h4>{chapter.chapter_name}</h4>
+                        <Badge variant="info">{chapter.period}</Badge>
+                        <NarratorList
+                          narratingCharacters={this.lookupCharacter(chapter.id)}
+                        />
+                        <p>{chapter.summary}</p>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
+            </Scrollbars>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
@@ -332,36 +359,6 @@ class Main extends React.Component {
 Main.propTypes = {
   chapters: PropTypes.array,
 };
-
-class Book extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentBook: {}
-    }
-  }
-
-  render() {
-    const { books } = this.props;
-    return (
-      <div class="book-container">
-        <Form>
-          <Form.Control as="select">
-            {books.map((book) => (
-              <option key={book.book_number} value={book.book_number}>
-                {book.book_name}
-              </option>
-            ))}
-          </Form.Control>
-        </Form>
-      </div>
-    );
-  }
-}
-
-Book.propTypes = {
-  books: PropTypes.array,
-}
 
 class App extends Component {
   // base component is used to fetch api data
@@ -430,13 +427,10 @@ class App extends Component {
     if (!isLoaded) {
       return <Spinner animation="border" />
     }
-    // TODO For testing-purpose extract only Chapters from Book 1
-    const chapters = books.filter((book) => (book.book_number === 1))[0].chapters;
     return (
       <div className="App">
-        <MenuBar />
         <Container fluid className="waygate-app-container">
-          <Main books={books} chapters={chapters} characters={characters} />
+          <Main books={books} characters={characters} />
         </Container>
       </div>
     );
