@@ -19,14 +19,14 @@ import {
 } from "react-bootstrap";
 
 function NarratorList(props) {
-	// Return a list of badges with Character's name and color
-	// Use white text if specified in use_white_text
+  // Return a list of badges with Character's name and color
+  // Use white text if specified in use_white_text
   const { narratingCharacters } = props;
   return (
     <div>
       {narratingCharacters.map((character) => (
         <span>
-          <Badge style={{background: character.color, color: character.use_white_text ? 'white' : 'black'}}  key={character.id}>
+          <Badge style={{ background: character.color, color: character.use_white_text ? 'white' : 'black' }} key={character.id}>
             {character.display_name}
           </Badge>
           &nbsp;
@@ -112,7 +112,7 @@ class Map extends React.Component {
     ctx.drawImage(img, 0, 0);
     ctx.stroke();
 
-	 	// setup individual stroke
+    // setup individual stroke
     ctx.lineWidth = 3;
     ctx.globalAlpha = 0.9;
     ctx.lineCap = "round";
@@ -126,7 +126,7 @@ class Map extends React.Component {
 
         // Set Point color based on narratingCharacter's color
         const colorOfCharacter = Object.values(narratingCharacters.filter((character) => (
-        	character.id === narrator.character
+          character.id === narrator.character
         )))[0].color;
         ctx.strokeStyle = colorOfCharacter;
         console.log("DEBUG: CharacterColor: ");
@@ -235,13 +235,14 @@ class Chapter extends React.Component {
 
 
   onChapterSelected(chapter) {
-    // onChapterSelected translation and scale are calculated
+    // onChapterSelected, translation and scale are calculated
     // To make every Point from the currentChapter visible on the map
+    // this.state.currentChapter is set to calculated value
     let position = {
       x: 0,
       y: 0,
     };
-		const scale = 1.2;
+    const scale = 1.2;
     // Loop through a list of Narrator and Points
     // To calculate where the Map should jump to
     // (x, y) from Points are averaged then divide by 3.0
@@ -410,7 +411,7 @@ class App extends Component {
       );
     }
     if (!isLoaded) {
-      return <Spinner animation="border"/>
+      return <Spinner animation="border" />
     }
     // TODO For testing-purpose extract only Chapters from Book 1
     const chapters = books.filter((book) => (book.book_number === 1))[0].chapters;
