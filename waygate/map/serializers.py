@@ -29,7 +29,12 @@ class ChapterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chapter
-        fields = ("id", "chapter_number", "chapter_name", "period", "summary", "narrators",)
+        fields = ("id",
+                  "chapter_number",
+                  "chapter_name",
+                  "period",
+                  "summary",
+                  "narrators")
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -45,6 +50,9 @@ class CharacterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Character
-        fields = ("display_name", "fullname", "color", "use_white_text", "narrators")
-
-
+        fields = ("id",
+                  "display_name",
+                  "fullname",
+                  "color",
+                  "use_white_text",
+                  "narrators")

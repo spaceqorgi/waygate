@@ -4,14 +4,12 @@ from rest_framework import viewsets
 
 from .serializers import BookSerializer, ChapterSerializer, CharacterSerializer, NarratorSerializer, PointSerializer
 from .models import Book, Chapter, Character, Narrator, Point
+from django.shortcuts import redirect
 
 
-class IndexView(View):
-    # TODO Remove this?
-    message = "Welcome to the Wheel of Time interactive map"
-
-    def get(self, request):
-        return HttpResponse(self.message)
+def redirect_view(request):
+    response = redirect('/api')
+    return response
 
 
 class BookView(viewsets.ModelViewSet):

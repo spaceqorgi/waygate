@@ -30,6 +30,5 @@ router.register(r'point', views.PointView, 'point')
 urlpatterns = [
     path('api/', include(router.urls)),
     path('docs/', include_docs_urls()),
-    path('map/', include('map.urls')),
     path('admin/', admin.site.urls),
 ]

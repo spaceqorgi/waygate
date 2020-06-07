@@ -1,5 +1,5 @@
 .App {
-  background: #d9e4e7;
+  background: #e2e2e2;
   font-family: serif;
 }
 
@@ -26,18 +26,18 @@ s.waygate-navbar {
 }
 
 div.waygate-chapter-header {
-	background: #eaf0cf;
+	background: #eee8d5;
 	text-align: left;
 }
 
 div.waygate-chapter-header:hover {
-	background: #c71219;
+	background: #dc322f;
 	color: linen;
 	text-align: left;
 }
 
 div.waygate-chapter-body {
-	background: #f1f1e6;
+	background: #fdf6e3;
 	text-align: left;
 }
 

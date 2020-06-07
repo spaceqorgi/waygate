@@ -19,11 +19,13 @@ import {
 } from "react-bootstrap";
 
 function NarratorList(props) {
-  const { narrating_characters } = props;
+	// Return a list of badges with Character's name and color
+	// Use white text if specified in use_white_text
+  const { narratingCharacters } = props;
   return (
     <div>
-      {narrating_characters.map((character) => (
-        <Badge variant="primary" key={character.id}>
+      {narratingCharacters.map((character) => (
+        <Badge style={{background: character.color, color: character.use_white_text ? 'white' : 'black'}}  key={character.id}>
           {character.display_name}
         </Badge>
       ))}
@@ -72,11 +74,11 @@ class Map extends React.Component {
   drawX(x, y, ctx) {
     ctx.beginPath();
 
-    ctx.moveTo(x - 9.5, y - 9.5);
-    ctx.lineTo(x + 9.5, y + 9.5);
+    ctx.moveTo(x - 5.5, y - 5.5);
+    ctx.lineTo(x + 5.5, y + 5.5);
 
-    ctx.moveTo(x + 9.5, y - 9.5);
-    ctx.lineTo(x - 9.5, y + 9.5);
+    ctx.moveTo(x + 5.5, y - 5.5);
+    ctx.lineTo(x - 5.5, y + 5.5);
     ctx.stroke();
   }
 
@@ -107,22 +109,29 @@ class Map extends React.Component {
     ctx.drawImage(img, 0, 0);
     ctx.stroke();
 
-    // Set opacity for points
-    ctx.lineWidth = 5;
-
-    ctx.globalAlpha = 0.8;
+	 	// setup individual stroke
+    ctx.lineWidth = 3;
+    ctx.globalAlpha = 0.9;
     ctx.lineCap = "round";
 
     // Draw on the map using canvas, point, and narrators
-    const { narrators } = this.props;
+    const { narrators, narratingCharacters } = this.props;
     if (narrators !== {}) {
+      // For each narrator, do
       for (const [id, narrator] of Object.entries(narrators)) {
-        // For each narrator, do
         console.log(`DEBUG: narrator id:${id}`);
-        ctx.strokeStyle = narrator.color;
+
+        // Set Point color based on narratingCharacter's color
+        const colorOfCharacter = Object.values(narratingCharacters.filter((character) => (
+        	character.id === narrator.character
+        )))[0].color;
+        ctx.strokeStyle = colorOfCharacter;
+        console.log("DEBUG: CharacterColor: ");
+        console.log(colorOfCharacter);
         const pointLenght = Object.keys(narrator.points).length;
+
+        // For each point, do
         for (const [pointId, point] of Object.entries(narrator.points)) {
-          // For each point, do
           console.log(`DEBUG:  point id:${id}`);
           const { x } = point;
           const { y } = point;
@@ -130,7 +139,7 @@ class Map extends React.Component {
             // If there is only one point, draw rectangle
             ctx.moveTo(x, y);
             ctx.beginPath();
-            ctx.rect(x - 7, y - 7, 14, 14);
+            ctx.rect(x - 5, y - 5, 10, 10);
             ctx.stroke();
           } else if (parseInt(pointId) === pointLenght - 1) {
             // Draw rectangle the final point
@@ -141,7 +150,7 @@ class Map extends React.Component {
             // Draw a circle on the first point
             ctx.moveTo(x, y);
             ctx.beginPath();
-            ctx.arc(x, y, 8, 0, 2 * Math.PI);
+            ctx.arc(x, y, 5, 0, 2 * Math.PI);
             ctx.moveTo(x, y);
             ctx.stroke();
           } else {
@@ -156,6 +165,7 @@ class Map extends React.Component {
   }
 
   render() {
+    const imageUrl = require("./images/map-grayscale.jpg")
     const height = 3374;
     const width = 2427;
     const { scale, translation } = this.props;
@@ -172,7 +182,7 @@ class Map extends React.Component {
           <img
             ref="img"
             alt="map"
-            src={require("./images/map-big-clean.png")}
+            src={imageUrl}
             className="hidden"
           />
         </div>
@@ -197,14 +207,41 @@ class Chapter extends React.Component {
         x: 15,
         y: 15,
       },
+      narratingCharacters: {},
     };
   }
 
+  lookupCharacter(chapter_id) {
+    // Receive chapter_id
+    // Return a list of narrators that appear in the Chapter
+    const { characters } = this.props;
+
+    // Filter only Character that appears in the currentChapter
+    let matchedCharacters = characters.filter((character) => {
+      const narrators = Object.values(character.narrators);
+      for (const narrator of narrators) {
+        // Lookup with chapter_id, return on match found
+        if (narrator.chapter === chapter_id) return true;
+      }
+      return false;
+    });
+
+    // Return a list of Character object
+    return matchedCharacters;
+  }
+
+
   onChapterSelected(chapter) {
+    // onChapterSelected translation and scale are calculated
+    // To make every Point from the currentChapter visible on the map
     let position = {
       x: 0,
       y: 0,
     };
+		const scale = 1.2;
+    // Loop through a list of Narrator and Points
+    // To calculate where the Map should jump to
+    // (x, y) from Points are averaged then divide by 3.0
     const narrators = Object.values(chapter.narrators);
     for (const narrator of narrators) {
       // TODO Make this works with multiple narrators
@@ -213,38 +250,30 @@ class Chapter extends React.Component {
         position.x += point.x;
         position.y += point.y;
       }
-      position.x = Math.round(-(position.x / points.length) / 3.0);
-      position.y = Math.round(-(position.y / points.length) / 3.0);
+      position.x = Math.round(-(position.x / points.length) / 1.2);
+      position.y = Math.round(-(position.y / points.length) / 1.2);
       break;
     }
 
+    // Lookup narratingCharacters for the currentChapter
+    const narratingCharacters = this.lookupCharacter(chapter.id)
+    console.log("DEBUG: Looked up Characters:");
+    console.log(narratingCharacters);
+
+    // Update Chapter's state
     this.setState({
       currentChapter: chapter,
-      scale: 0.8,
+      scale: scale,
       translation: position,
+      narratingCharacters: narratingCharacters
     });
 
-    const { scrollbars } = this.refs;
-    scrollbars.scrollTop(45 * chapter.chapter_number);
-  }
-
-  lookupCharacter(chapter_id) {
-    const { characters } = this.props;
-
-    // Filter only Character that appears in the currentChapter
-    let matched_characters = characters.filter((character) => {
-      const narrators = Object.values(character.narrators);
-      for (const narrator of narrators) {
-        if (narrator.chapter === chapter_id) return true;
-      }
-      return false;
-    });
-
-    return matched_characters;
+    // const { scrollbars } = this.refs;
+    // scrollbars.scrollTop(45 * chapter.chapter_number);
   }
 
   render() {
-    const { currentChapter, scale, translation } = this.state;
+    const { currentChapter, scale, translation, narratingCharacters } = this.state;
     const { chapters } = this.props;
     return (
       <Row>
@@ -254,6 +283,7 @@ class Chapter extends React.Component {
               narrators={currentChapter.narrators}
               scale={scale}
               translation={translation}
+              narratingCharacters={narratingCharacters}
             />
           </div>
         </Col>
@@ -266,8 +296,7 @@ class Chapter extends React.Component {
                     as={Card.Header}
                     eventKey={chapter.chapter_number}
                     onClick={() => this.onChapterSelected(chapter)}
-                    className="waygate-chapter-header"
-                  >
+                    className="waygate-chapter-header">
                     <h5>
                       <Badge variant="dark">
                         Chapter {chapter.chapter_number}
@@ -281,7 +310,7 @@ class Chapter extends React.Component {
                       <h4>{chapter.chapter_name}</h4>
                       <Badge variant="info">{chapter.period}</Badge>
                       <NarratorList
-                        narrating_characters={this.lookupCharacter(chapter.id)}
+                        narratingCharacters={this.lookupCharacter(chapter.id)}
                       />
                       <p>{chapter.summary}</p>
                     </Card.Body>
@@ -301,6 +330,7 @@ Chapter.propTypes = {
 };
 
 class App extends Component {
+  // base component is used to fetch api data
   constructor(props) {
     super(props);
     this.state = {

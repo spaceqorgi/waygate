@@ -23,7 +23,7 @@ class Point(models.Model):
                                  on_delete=models.CASCADE)
     x = models.FloatField()
     y = models.FloatField()
-    type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ev)
+    type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=ld)
 
     def __str__(self):
         return self.narrator.__str__()
