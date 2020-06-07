@@ -15,6 +15,7 @@ import {
   NavDropdown,
   Button,
   Badge,
+  Spinner,
 } from "react-bootstrap";
 
 function NarratorList(props) {
@@ -406,7 +407,7 @@ class App extends Component {
       );
     }
     if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <Spinner animation="border"/>
     }
     // TODO For testing-purpose extract only Chapters from Book 1
     const chapters = books.filter((book) => (book.book_number === 1))[0].chapters;
