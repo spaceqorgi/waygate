@@ -36,6 +36,7 @@ div.waygate-app-container {
 
 s.waygate-navbar {
 	height: 6vh;
+  background: #002b36;
 }
 
 .waygate-map-container {
