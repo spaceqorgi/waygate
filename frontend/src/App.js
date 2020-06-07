@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { MapInteractionCSS } from "react-map-interaction";
 import { Scrollbars } from "react-custom-scrollbars";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import {
   Accordion,
   Card,
