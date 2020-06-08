@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import Book, Chapter, Character, Narrator, Point
 
+
 class ChapterInline(admin.StackedInline):
     model = Chapter
     extra = 3
@@ -13,17 +14,14 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class NarratorInline(admin.TabularInline):
-    model = Narrator;
+    model = Narrator
     extra = 3
 
 
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ('chapter_number', 'chapter_name', 'period', 'summary')
     fieldsets = [
-        (None, {'fields': ['chapter_number',
-                                     'chapter_name',
-                                     'period',
-                                     'summary']}),
+        (None, {'fields': ['chapter_number', 'chapter_name', 'period', 'summary']}),
     ]
     inlines = [NarratorInline]
 

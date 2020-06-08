@@ -1,6 +1,5 @@
+
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (2, 'Lan', 'Al''Lan Mandragoran', '#FFFFFF', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (79, 'Lews Therin', 'Lews Therin Telamon', '#E65100', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (41, 'Egwene', 'Egwene al''Vere', '#69F0AE', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (1, 'Abaldar', 'Abaldar Yulan', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (3, 'Adelorna', 'Adelorna Bastine', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (4, 'Alliandre', 'Alliandre Maritha Kigarin', '#FFFFFF', true);
@@ -15,7 +14,6 @@ INSERT INTO public.map_character (id, display_name, fullname, color, use_white_t
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (13, 'Asne', 'Asne Zeramene', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (14, 'Assid', 'Assid Bakuun', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (15, 'Atal', 'Atal Mishraile', '#FFFFFF', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (16, 'Aviendha', 'Aviendha', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (17, 'Bain', 'Bain', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (18, 'Barmellin', 'Barmellin', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (19, 'Barriga', 'Barriga', '#FFFFFF', true);
@@ -41,7 +39,6 @@ INSERT INTO public.map_character (id, display_name, fullname, color, use_white_t
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (39, 'Eben', 'Eben Hopwil', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (40, 'Egeanin', 'Egeanin Tamarath', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (42, 'Elaida', 'Elaida do Avriny a''Roihan', '#FFFFFF', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (43, 'Elayne', 'Elayne Trakand', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (44, 'Elenia', 'Elenia Sarand', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (45, 'Ellorien', 'Ellorien Traemane', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (46, 'Elmindreda', 'Elmindreda Farshaw', '#FFFFFF', true);
@@ -122,6 +119,9 @@ INSERT INTO public.map_character (id, display_name, fullname, color, use_white_t
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (127, 'Shendla', 'Shendla', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (128, 'Sheriam', 'Sheriam Bayanar', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (129, 'Silviana', 'Silviana Brehon', '#FFFFFF', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (41, 'Egwene', 'Egwene al''Vere', '#6c71c4', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (43, 'Elayne', 'Elayne Trakand', '#d33682', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (16, 'Aviendha', 'Aviendha', '#cb4b16', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (130, 'Siuan', 'Siuan Sanche', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (131, 'Slayer', 'Slayer', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (132, 'Sorilea', 'Sorilea', '#FFFFFF', true);
@@ -141,8 +141,9 @@ INSERT INTO public.map_character (id, display_name, fullname, color, use_white_t
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (146, 'Vilnar', 'Vilnar Barada', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (147, 'Weilin', 'Weilin Aldragoran', '#FFFFFF', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (148, 'Yukiri', 'Yukiri', '#FFFFFF', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (110, 'Rand', 'Rand al''Thor', '#D50000', true);
 INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (88, 'Mat', 'Matrim Cauthon', '#212121', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (94, 'Moiraine', 'Moiraine Damodred', '#0D47A1', true);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (106, 'Perrin', 'Perrin t''Bashere Aybara', '#FFD600', false);
-INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (101, 'Nynaeve', 'Nynaeve ti al''Meara Mandragoran', '#FFFF00', false);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (110, 'Rand', 'Rand al''Thor', '#c52924', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (79, 'Lews Therin', 'Lews Therin Telamon', '#cb4b16', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (101, 'Nynaeve', 'Nynaeve ti al''Meara Mandragoran', '#859900', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (94, 'Moiraine', 'Moiraine Damodred', '#268bd2', true);
+INSERT INTO public.map_character (id, display_name, fullname, color, use_white_text) VALUES (106, 'Perrin', 'Perrin t''Bashere Aybara', '#2aa198', true);

@@ -1,1 +1,0 @@
-INSERT INTO public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (1, 'pbkdf2_sha256$180000$el72SmEwI9XN$GtxdOzwAVoby6804zs5Xyy67DgmJm6+D3GLc1DUJusg=', '2020-05-20 15:22:10.156585', true, 'admin', '', '', 'spacecorgi@pm.me', true, true, '2020-05-20 15:17:36.668618');

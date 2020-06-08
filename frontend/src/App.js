@@ -16,8 +16,6 @@ import {
   Button,
   Badge,
   Spinner,
-  Dropdown,
-  DropdownButton
 } from "react-bootstrap";
 
 function NarratorList(props) {
@@ -224,6 +222,7 @@ class Main extends React.Component {
       x: 0,
       y: 0,
     };
+    // Scale on zoomed map
     const scale = 1.2;
     // Loop through a list of Narrator and Points
     // To calculate where the Map should jump to
@@ -261,7 +260,6 @@ class Main extends React.Component {
   render() {
     const { books } = this.props;
     const { chapters, currentBook, currentChapter, scale, translation, narratingCharacters } = this.state;
-
     return (
       <div>
         <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
@@ -271,10 +269,9 @@ class Main extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="http://127.0.0.1:8000/api/book">Books</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/api/chapter">Chapters</Nav.Link>
               <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
               <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/admin" variant="warning">Admin</Nav.Link>
               <NavDropdown title="Resources" id="basic-nav-dropdown">
                 <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
                   The Wheel of Time Wiki
@@ -290,20 +287,21 @@ class Main extends React.Component {
                   Buy The Wheel of Time E-books
                   </NavDropdown.Item>
               </NavDropdown>
+            </Nav>
+            <Nav>
               <NavDropdown
-                title={currentBook.book_name ? currentBook.book_name : "Select book"}
+                title={currentBook.book_name ? currentBook.book_number + " - " + currentBook.book_name : "Select book"}
                 id="dropdown-select-book"
+                drop='left'
+                menuRole='menu'
                 onSelect={(e) => this.onBookSelected(e)}>
                 {books.map((book) => (
                   <NavDropdown.Item eventKey={book.book_number} >
-                    {book.book_name}
+                    Book {book.book_number} - {book.book_name}
                   </NavDropdown.Item>
                 ))}
               </NavDropdown>
             </Nav>
-            <Button href="http://127.0.0.1:8000/admin" variant="warning">
-              Admin
-            </Button>
           </Navbar.Collapse>
         </Navbar>
         <Row>
