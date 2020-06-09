@@ -13,7 +13,6 @@ import {
   Nav,
   Navbar,
   NavDropdown,
-  Button,
   Badge,
   Spinner,
 } from "react-bootstrap";
@@ -26,7 +25,13 @@ function NarratorList(props) {
     <div>
       {narratingCharacters.map((character) => (
         <span>
-          <Badge style={{ background: character.color, color: character.use_white_text ? 'white' : 'black' }} key={character.id}>
+          <Badge
+            style={{
+              background: character.color,
+              color: character.use_white_text ? "white" : "black",
+            }}
+            key={character.id}
+          >
             {character.display_name}
           </Badge>
           &nbsp;
@@ -88,9 +93,11 @@ class Map extends React.Component {
         console.log(`DEBUG: narrator id:${id}`);
 
         // Set Point color based on narratingCharacter's color
-        const colorOfCharacter = Object.values(narratingCharacters.filter((character) => (
-          character.id === narrator.character
-        )))[0].color;
+        const colorOfCharacter = Object.values(
+          narratingCharacters.filter(
+            (character) => character.id === narrator.character
+          )
+        )[0].color;
         ctx.strokeStyle = colorOfCharacter;
         console.log("DEBUG: CharacterColor: ");
         console.log(colorOfCharacter);
@@ -131,7 +138,7 @@ class Map extends React.Component {
   }
 
   render() {
-    const imageUrl = require("./images/map-grayscale.jpg")
+    const imageUrl = require("./images/map-grayscale.jpg");
     const height = 3374;
     const width = 2427;
     const { scale, translation } = this.props;
@@ -145,12 +152,7 @@ class Map extends React.Component {
       >
         <div>
           <canvas ref="canvas" width={height} height={width} />
-          <img
-            ref="img"
-            alt="map"
-            src={imageUrl}
-            className="hidden"
-          />
+          <img ref="img" alt="map" src={imageUrl} className="hidden" />
         </div>
       </MapInteractionCSS>
     );
@@ -204,14 +206,16 @@ class Main extends React.Component {
     //
     console.log(book_number);
     const { books } = this.props;
-    const currentBook = books.filter((book) => (book.book_number === parseInt(book_number)))[0];
-    console.log("DEBUG: currentBook")
-    console.log(currentBook)
+    const currentBook = books.filter(
+      (book) => book.book_number === parseInt(book_number)
+    )[0];
+    console.log("DEBUG: currentBook");
+    console.log(currentBook);
 
     this.setState({
       currentBook: currentBook,
-      chapters: currentBook.chapters
-    })
+      chapters: currentBook.chapters,
+    });
   }
 
   onChapterSelected(chapter) {
@@ -241,7 +245,7 @@ class Main extends React.Component {
     }
 
     // Lookup narratingCharacters for the currentChapter
-    const narratingCharacters = this.lookupCharacter(chapter.id)
+    const narratingCharacters = this.lookupCharacter(chapter.id);
     console.log("DEBUG: Looked up Characters:");
     console.log(narratingCharacters);
 
@@ -250,7 +254,7 @@ class Main extends React.Component {
       currentChapter: chapter,
       scale: scale,
       translation: position,
-      narratingCharacters: narratingCharacters
+      narratingCharacters: narratingCharacters,
     });
 
     // const { scrollbars } = this.refs;
@@ -259,44 +263,58 @@ class Main extends React.Component {
 
   render() {
     const { books } = this.props;
-    const { chapters, currentBook, currentChapter, scale, translation, narratingCharacters } = this.state;
+    const {
+      chapters,
+      currentBook,
+      currentChapter,
+      scale,
+      translation,
+      narratingCharacters,
+    } = this.state;
     return (
       <div>
         <Navbar bg="dark" variant="dark" expand="lg" className="waygate-navbar">
           <Navbar.Brand href="#home">
             Waygate - The Wheel of Time Interactive Map
-            </Navbar.Brand>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="http://127.0.0.1:8000/api">API</Nav.Link>
               <Nav.Link href="http://127.0.0.1:8000/docs">Docs</Nav.Link>
-              <Nav.Link href="http://127.0.0.1:8000/admin" variant="warning">Admin</Nav.Link>
+              <Nav.Link href="http://127.0.0.1:8000/admin" variant="warning">
+                Admin
+              </Nav.Link>
               <NavDropdown title="Resources" id="basic-nav-dropdown">
                 <NavDropdown.Item href="https://wot.fandom.com/wiki/A_beginning">
                   The Wheel of Time Wiki
-                  </NavDropdown.Item>
-                <NavDropdown.Item href="https://dragonmount.com/Books/index/">
+                </NavDropdown.Item>
+                <NavDropdown.Item href="https://dragonmount.com/books/index/">
                   Dragonmount
-                  </NavDropdown.Item>
+                </NavDropdown.Item>
                 <NavDropdown.Item href="https://www.tarvalon.net/index.php?pages/Library/">
                   Tar Valon Library
-                  </NavDropdown.Item>
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="https://dragonmount.com/store/category/8-robert-jordan-ebooks/">
                   Buy The Wheel of Time E-books
-                  </NavDropdown.Item>
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav>
               <NavDropdown
-                title={currentBook.book_name ? currentBook.book_number + " - " + currentBook.book_name : "Select book"}
+                title={
+                  currentBook.book_name
+                    ? currentBook.book_number + " - " + currentBook.book_name
+                    : "Select book"
+                }
                 id="dropdown-select-book"
-                drop='left'
-                menuRole='menu'
-                onSelect={(e) => this.onBookSelected(e)}>
+                drop="left"
+                menuRole="menu"
+                onSelect={(e) => this.onBookSelected(e)}
+              >
                 {books.map((book) => (
-                  <NavDropdown.Item eventKey={book.book_number} >
+                  <NavDropdown.Item eventKey={book.book_number}>
                     Book {book.book_number} - {book.book_name}
                   </NavDropdown.Item>
                 ))}
@@ -324,13 +342,14 @@ class Main extends React.Component {
                       as={Card.Header}
                       eventKey={chapter.chapter_number}
                       onClick={() => this.onChapterSelected(chapter)}
-                      className="waygate-chapter-header">
+                      className="waygate-chapter-header"
+                    >
                       <h5>
                         <Badge variant="dark">
                           Chapter {chapter.chapter_number}
                         </Badge>
                         &nbsp;
-                    {chapter.chapter_name}
+                        {chapter.chapter_name}
                       </h5>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey={chapter.chapter_number}>
@@ -423,7 +442,7 @@ class App extends Component {
       );
     }
     if (!isLoaded) {
-      return <Spinner animation="border" />
+      return <Spinner animation="border" />;
     }
     return (
       <div className="App">
