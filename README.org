@@ -64,6 +64,46 @@ ALTER SEQUENCE map_chapter_id_seq RESTART;
 UPDATE map_chapter set id = DEFAULT;
 #+END_SRC
 
+* ZFS
+
+[[https://www.2ndquadrant.com/en/blog/pg-phriday-postgres-zfs/][Tutorial]] (Use postgres version 10)
+
+As ROOT
+Create ZFS dataset
+
+#+BEGIN_SRC sh
+zfs create -o recordsize=8K \
+             -o primarycache=metadata \
+             -o mountpoint=/var/lib/postgres \
+             -o logbias=throughput \
+              <pool>/postgres
+#+END_SRC
+
+As ROOT
+Create PostgresSQL cluster
+
+#+BEGIN_SRC sh
+pg_createcluster 12 zfs -D /rpool/postgres
+systemctl daemon-reload
+
+pg_conftool 12 zfs set shared_buffers 4GB
+pg_conftool 12 zfs set work_mem 12MB
+pg_conftool 12 zfs set maintenance_work_mem 1GB
+pg_conftool 12 zfs set random_page_cost 2.0
+pg_conftool 12 zfs set effective_cache_size 40GB
+
+systemctl start postgresql@12-zfs
+
+#+END_SRC
+
+AS postgres
+Create db
+
+#+BEGIN_SRC
+createdb waygate
+pgbench -i -s 100 waygate
+#+END_SRC
+
 * Resources
 
 - Book list https://en.wikipedia.org/wiki/The_Wheel_of_Time
