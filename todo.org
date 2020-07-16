@@ -1,12 +1,4 @@
 * Inbox
-** TODO Make presentation
-
-[[file:~/waygate/README.org::*Resources][Resources]]
-** DONE Check out accordian
-
-[[file:~/waygate/README.org::*Resources][Resources]]
-** DONE Find good JS/CSS/React image zoom library for map
-** DONE Or, Make map-interaction zoom faster
 ** TODO Calculate scale level base on Narrator positions
 ** TODO Better way to calculate translation (x,y)
 ** TODO Add button to adjust Scale level
@@ -14,6 +6,3 @@
 - Reset to default zoom (See the whole map)
 ** TODO Separate components into modules
 ** TODO Refactor for cleaner code
-** TODO Better admin panel [1/2]
-	- [ ] Style
-	- [X] Table
