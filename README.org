@@ -11,23 +11,24 @@ Jordan.
 
 Instatiate with create-react-app
 
-- react-map-interaction (my fork)
+#+BEGIN_SRC sh
+yarn add react-bootstrap bootstrap
+#+END_SRC
+
+react-map-interaction (my fork)
 
 *** Backend (Django)
+
+This project use =pipenv= for dependencies management.
+
+Use =pipenv install= to install the following packages from Pipfile.
 
 - django
 - django_restframework
 - django-cors-header
 - psycopg2
 
-* Steps (Drawing and diagraming)
-
-1. System design
-2. Database design
-3. UI Design
-4. Develop backend
-5. Develop frontend
-6. Piecing it together
+* References
 
 ** Setup React frontend
 
@@ -57,14 +58,14 @@ https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your
 
 * Tips & Tricks
 
-Reset sequence
+** Reset sequence in Postgresql
 
 #+BEGIN_SRC sql
 ALTER SEQUENCE map_chapter_id_seq RESTART;
 UPDATE map_chapter set id = DEFAULT;
 #+END_SRC
 
-* ZFS
+** Setting up Postgresql on ZFS server
 
 [[https://www.2ndquadrant.com/en/blog/pg-phriday-postgres-zfs/][Tutorial]] (Use postgres version 10)
 
@@ -96,15 +97,14 @@ systemctl start postgresql@12-zfs
 
 #+END_SRC
 
-AS postgres
-Create db
+As =postgres= user.
 
 #+BEGIN_SRC
 createdb waygate
 pgbench -i -s 100 waygate
 #+END_SRC
 
-* Resources
+* Other resources
 
 - Book list https://en.wikipedia.org/wiki/The_Wheel_of_Time
 - Chapter summary https://dragonmount.com/news/book-news/booksummaries/
